@@ -16,20 +16,14 @@ const useStyles = makeStyles({
         backgroundColor: tokens.colorNeutralBackground1, // Will need theme override for #030303
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: tokens.spacingVerticalL,
-        paddingRight: tokens.spacingHorizontalMNudge,
-        paddingBottom: tokens.spacingVerticalL,
-        paddingLeft: tokens.spacingHorizontalMNudge,
+        padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalMNudge}`,
         borderRightWidth: tokens.strokeWidthThin,
         borderRightStyle: 'solid',
         borderRightColor: tokens.colorNeutralStroke1,
         boxSizing: 'border-box', // Ensure padding doesn't affect width
     },
     brand: {
-        paddingTop: 0,
-        paddingRight: tokens.spacingHorizontalS,
-        paddingBottom: tokens.spacingVerticalXXL,
-        paddingLeft: tokens.spacingHorizontalS,
+        padding: `${tokens.spacingVerticalXXL} ${tokens.spacingHorizontalS}`,
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalMNudge,
@@ -52,10 +46,7 @@ const useStyles = makeStyles({
         justifyContent: 'flex-start',
         width: '100%', // Full width
         color: tokens.colorNeutralForeground2,
-        paddingTop: tokens.spacingVerticalM,
-        paddingRight: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingVerticalM,
-        paddingLeft: tokens.spacingHorizontalM,
+        padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalM}`,
         ':hover': {
             color: tokens.colorNeutralForeground1Hover,
             backgroundColor: tokens.colorNeutralBackground1Hover,
@@ -68,10 +59,7 @@ const useStyles = makeStyles({
     },
     playlistSection: {
         marginTop: tokens.spacingVerticalXXL,
-        paddingTop: tokens.spacingVerticalM,
-        paddingRight: tokens.spacingHorizontalM,
-        paddingBottom: 0,
-        paddingLeft: tokens.spacingHorizontalM,
+        padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalM} 0 ${tokens.spacingHorizontalM}`,
         borderTopWidth: tokens.strokeWidthThin,
         borderTopStyle: 'solid',
         borderTopColor: tokens.colorNeutralStroke1,
