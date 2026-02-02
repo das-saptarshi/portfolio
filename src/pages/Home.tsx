@@ -141,9 +141,8 @@ const Home = () => {
                     <input type="text" placeholder="Search songs, albums, artists, podcasts" className={styles.searchInput} />
                 </div>
                 <div className={styles.profileActions}>
-                    <Cast size={24} color="#fff" />
                     <div className={styles.smallAvatar}>
-                        <User size={20} />
+                        <User size={20} /> {/* Github Link on the User icon*/}
                     </div>
                 </div>
             </div>
@@ -156,7 +155,7 @@ const Home = () => {
                     </div>
                     <div>
                         <Text size={200} style={{ color: '#aaa', display: 'block', textTransform: 'uppercase' }}>Saptarshi Das</Text>
-                        <Text size={600} weight="bold">Listen again</Text>
+                        <Text size={600} weight="bold">Software Engineer</Text>
                     </div>
                 </div>
             </div>
@@ -176,10 +175,7 @@ const Home = () => {
                             <div key={i} className={styles.mixCard}>
                                 <div className={styles.cardArt} style={{ backgroundColor: item.color }}>
                                     <span className={styles.cardTitle}>{item.name}</span>
-
-                                    {/* Overlay Play Button */}
                                     <div className={`hoverPlay ${styles.hoverPlay}`}>
-                                        <Play fill="white" size={48} />
                                     </div>
                                 </div>
                                 <Text block weight="semibold" size={400}>{item.name}</Text>
