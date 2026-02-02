@@ -19,7 +19,7 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: `${tokens.spacingVerticalXXS} ${tokens.spacingHorizontalXXL}`,
+        padding: `${tokens.spacingVerticalXXL} ${tokens.spacingHorizontalXXL}`,
         position: 'fixed',
         bottom: 0,
         zIndex: 100,
@@ -171,11 +171,9 @@ const useStyles = makeStyles({
     sectionTitle: {
         fontSize: tokens.fontSizeBase500,
         fontWeight: tokens.fontWeightBold,
-        marginBottom: tokens.spacingVerticalL,
-        borderBottomWidth: tokens.strokeWidthThin,
-        borderBottomStyle: 'solid',
-        borderBottomColor: tokens.colorNeutralStroke1,
-        paddingBottom: tokens.spacingVerticalS,
+        margin: tokens.spacingVerticalL,
+        border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
+        padding: tokens.spacingVerticalS,
         color: tokens.colorNeutralForeground1,
     },
     timelineList: {
@@ -198,15 +196,12 @@ const useStyles = makeStyles({
         gap: tokens.spacingHorizontalS,
     },
     skillBadge: {
-        paddingTop: tokens.spacingVerticalXS,
-        paddingRight: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingVerticalXS,
-        paddingLeft: tokens.spacingHorizontalM,
-        backgroundColor: tokens.colorNeutralBackgroundAlpha,
-        borderRadius: tokens.borderRadiusMedium,
         fontSize: tokens.fontSizeBase300,
+        padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalM}`,
+        backgroundColor: tokens.colorNeutralBackgroundAlpha,
         color: tokens.colorNeutralForeground1,
         border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
+        borderRadius: tokens.borderRadiusMedium,
     }
 });
 
