@@ -1,7 +1,105 @@
 import { Play } from 'lucide-react';
-import styles from './Home.module.css';
+import {
+    makeStyles,
+    shorthands,
+    Button,
+    Text
+} from '@fluentui/react-components';
+
+const useStyles = makeStyles({
+    container: {
+        paddingBottom: '2rem',
+    },
+    filters: {
+        marginBottom: '2rem',
+    },
+    filterList: {
+        display: 'flex',
+        gap: '1rem',
+        marginBottom: '2rem',
+    },
+    filterBadge: {
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        color: '#ffffff',
+        ':hover': {
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            color: '#ffffff',
+        }
+    },
+    filterBadgeActive: {
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        ':hover': {
+            backgroundColor: '#e6e6e6',
+            color: '#000000',
+        }
+    },
+    section: {
+        marginBottom: '3rem',
+    },
+    sectionHeader: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        marginBottom: '1rem',
+    },
+    subtitle: {
+        color: '#aaa',
+        textTransform: 'uppercase',
+        display: 'block',
+    },
+    scrollContainer: {
+        display: 'flex',
+        gap: '1.5rem',
+        overflowX: 'auto',
+        paddingBottom: '1rem',
+    },
+    mixCard: {
+        minWidth: '180px',
+        cursor: 'pointer',
+        position: 'relative',
+        ':hover': {
+            '& .hoverPlay': {
+                display: 'flex'
+            }
+        }
+    },
+    cardArt: {
+        width: '180px',
+        height: '180px',
+        ...shorthands.borderRadius('4px'),
+        marginBottom: '0.75rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+    },
+    cardTitle: {
+        fontSize: '1.5rem',
+        fontWeight: 800,
+        color: 'rgba(0,0,0,0.5)',
+    },
+    hoverPlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        display: 'none', // hidden by default
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    moreButton: {
+        color: '#aaa',
+        ...shorthands.borderColor('#aaa'),
+        minWidth: 'auto',
+    }
+});
 
 const Home = () => {
+    const styles = useStyles();
+
     const skillCategories = [
         {
             title: 'Your Favorites',
@@ -39,10 +137,10 @@ const Home = () => {
         <div className={styles.container}>
             <div className={styles.filters}>
                 <div className={styles.filterList}>
-                    <span className={`${styles.filterBadge} ${styles.filterBadgeActive}`}>Relax</span>
-                    <span className={styles.filterBadge}>Energize</span>
-                    <span className={styles.filterBadge}>Focus</span>
-                    <span className={styles.filterBadge}>Commute</span>
+                    <Button shape="rounded" className={styles.filterBadgeActive}>Relax</Button>
+                    <Button shape="rounded" className={styles.filterBadge}>Energize</Button>
+                    <Button shape="rounded" className={styles.filterBadge}>Focus</Button>
+                    <Button shape="rounded" className={styles.filterBadge}>Commute</Button>
                 </div>
             </div>
 
@@ -50,10 +148,10 @@ const Home = () => {
                 <div key={idx} className={styles.section}>
                     <div className={styles.sectionHeader}>
                         <div>
-                            <span className={styles.subtitle}>{category.subtitle}</span>
-                            <h2 className={styles.title}>{category.title}</h2>
+                            <Text size={200} className={styles.subtitle}>{category.subtitle}</Text>
+                            <Text size={600} weight="bold">{category.title}</Text>
                         </div>
-                        <button className={styles.moreButton}>More</button>
+                        <Button appearance="outline" shape="circular" size="small" className={styles.moreButton}>More</Button>
                     </div>
 
                     <div className={styles.scrollContainer}>
@@ -63,12 +161,12 @@ const Home = () => {
                                     <span className={styles.cardTitle}>{item.name}</span>
 
                                     {/* Overlay Play Button */}
-                                    <div className={styles.hoverPlay}>
+                                    <div className={`hoverPlay ${styles.hoverPlay}`}>
                                         <Play fill="white" size={48} />
                                     </div>
                                 </div>
-                                <h3 className={styles.mixName}>{item.name} Mix</h3>
-                                <p className={styles.mixDetails}>Saptarshi Das • {Math.floor(Math.random() * 50) + 10} songs</p>
+                                <Text block weight="semibold" size={400}>{item.name} Mix</Text>
+                                <Text size={200} style={{ color: '#aaa' }}>Saptarshi Das • {Math.floor(Math.random() * 50) + 10} songs</Text>
                             </div>
                         ))}
                     </div>

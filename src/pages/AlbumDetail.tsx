@@ -1,6 +1,100 @@
 import { useParams } from 'react-router-dom';
 import { Play, Clock, MoreHorizontal, PlusCircle } from 'lucide-react';
-import styles from './AlbumDetail.module.css';
+import {
+    makeStyles,
+    shorthands,
+    Text,
+    Button
+} from '@fluentui/react-components';
+
+const useStyles = makeStyles({
+    header: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        gap: '2rem',
+        ...shorthands.padding('2rem', '0'),
+    },
+    albumArt: {
+        width: '200px',
+        height: '200px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+    },
+    albumInitial: {
+        fontSize: '3rem',
+        fontWeight: 800,
+        color: 'white',
+    },
+    albumType: {
+        fontSize: '0.9rem',
+        textTransform: 'uppercase',
+        fontWeight: 700,
+        display: 'block',
+    },
+    title: {
+        fontSize: '3rem',
+        fontWeight: 900,
+        marginBottom: '0.5rem',
+        display: 'block',
+    },
+    meta: {
+        color: '#ccc',
+        display: 'block',
+    },
+    controls: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '2rem',
+        ...shorthands.padding('1rem', '0'),
+    },
+    playButton: {
+        width: '56px',
+        height: '56px',
+        ...shorthands.borderRadius('50%'),
+        backgroundColor: 'white',
+        color: 'black',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        ...shorthands.border('none'),
+    },
+    trackList: {
+        marginTop: '2rem',
+    },
+    trackHeader: {
+        display: 'grid',
+        gridTemplateColumns: '50px 1fr 100px',
+        ...shorthands.padding('0.5rem', '1rem'),
+        borderBottom: '1px solid rgba(255,255,255,0.1)',
+        color: '#aaa',
+        fontSize: '0.9rem',
+    },
+    headerTime: {
+        textAlign: 'right',
+    },
+    trackRow: {
+        display: 'grid',
+        gridTemplateColumns: '50px 1fr 100px',
+        ...shorthands.padding('1rem', '1rem'),
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        color: '#ccc',
+        cursor: 'pointer',
+        ':hover': {
+            backgroundColor: 'rgba(255,255,255,0.1)',
+            color: 'white',
+        }
+    },
+    trackDuration: {
+        textAlign: 'right',
+        fontSize: '0.85rem',
+    },
+    trackTitle: {
+        fontWeight: 500,
+    }
+});
 
 const experienceData: any = {
     microsoft: {
@@ -55,6 +149,7 @@ const experienceData: any = {
 };
 
 const AlbumDetail = () => {
+    const styles = useStyles();
     const { id } = useParams();
     const data = experienceData[id || 'microsoft'];
 
@@ -71,22 +166,22 @@ const AlbumDetail = () => {
                     className={styles.albumArt}
                     style={{ background: `linear-gradient(135deg, ${data.color}, #000)` }}
                 >
-                    <h1 className={styles.albumInitial}>{data.title[0]}</h1>
+                    <Text className={styles.albumInitial}>{data.title[0]}</Text>
                 </div>
                 <div>
-                    <span className={styles.albumType}>Album</span>
-                    <h1 className={styles.title}>{data.title}</h1>
-                    <p className={styles.meta}>{data.role} • {data.year} • {data.tracks.length} songs</p>
+                    <Text className={styles.albumType}>Album</Text>
+                    <Text className={styles.title}>{data.title}</Text>
+                    <Text className={styles.meta}>{data.role} • {data.year} • {data.tracks.length} songs</Text>
                 </div>
             </div>
 
             {/* Controls */}
             <div className={styles.controls}>
-                <div className={styles.playButton}>
-                    <Play fill="black" size={28} className={styles.playIcon} />
-                </div>
-                <PlusCircle size={32} color="#ccc" />
-                <MoreHorizontal size={32} color="#ccc" />
+                <button className={styles.playButton}>
+                    <Play fill="black" size={28} style={{ marginLeft: 4 }} />
+                </button>
+                <Button appearance="transparent" icon={<PlusCircle size={32} color="#ccc" />} />
+                <Button appearance="transparent" icon={<MoreHorizontal size={32} color="#ccc" />} />
             </div>
 
             {/* List */}
@@ -102,7 +197,7 @@ const AlbumDetail = () => {
                         className={styles.trackRow}
                     >
                         <span className="track-index">{index + 1}</span>
-                        <span className={styles.trackTitle}>{track.title}</span>
+                        <Text className={styles.trackTitle}>{track.title}</Text>
                         <span className={styles.trackDuration}>{track.duration}</span>
                     </div>
                 ))}
