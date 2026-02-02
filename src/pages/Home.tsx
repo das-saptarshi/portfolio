@@ -1,4 +1,4 @@
-import { Play } from 'lucide-react';
+import { Play, Search, Cast, User } from 'lucide-react';
 import {
     makeStyles,
     Button,
@@ -9,28 +9,52 @@ const useStyles = makeStyles({
     container: {
         paddingBottom: '2rem',
     },
-    filters: {
+    headerBar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         marginBottom: '2rem',
+    },
+    searchContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        backgroundColor: '#212121',
+        borderRadius: '4px',
+        padding: '0.5rem 1rem',
+        width: '100%',
+        maxWidth: '600px',
+        gap: '0.5rem',
+    },
+    searchInput: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        color: '#fff',
+        width: '100%',
+        fontSize: '1rem',
+        ':focus': {
+            outline: 'none',
+        }
+    },
+    profileActions: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+    },
+    filters: {
+        marginBottom: '3rem',
     },
     filterList: {
         display: 'flex',
-        gap: '1rem',
-        marginBottom: '2rem',
+        gap: '0.8rem',
     },
     filterBadge: {
         backgroundColor: 'rgba(255,255,255,0.1)',
         color: '#ffffff',
+        border: '1px solid rgba(255,255,255,0.1)',
+        borderRadius: '8px',
+        padding: '0.4rem 1rem',
         ':hover': {
             backgroundColor: 'rgba(255,255,255,0.2)',
-            color: '#ffffff',
-        }
-    },
-    filterBadgeActive: {
-        backgroundColor: '#ffffff',
-        color: '#000000',
-        ':hover': {
-            backgroundColor: '#e6e6e6',
-            color: '#000000',
         }
     },
     section: {
@@ -38,14 +62,24 @@ const useStyles = makeStyles({
     },
     sectionHeader: {
         display: 'flex',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: '1rem',
     },
-    subtitle: {
-        color: '#aaa',
-        textTransform: 'uppercase',
-        display: 'block',
+    profileHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        marginBottom: '1rem',
+    },
+    smallAvatar: {
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        backgroundColor: '#555',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     scrollContainer: {
         display: 'flex',
@@ -74,8 +108,8 @@ const useStyles = makeStyles({
         position: 'relative',
     },
     cardTitle: {
-        fontSize: '1.5rem',
-        fontWeight: 800,
+        fontSize: '1.2rem',
+        fontWeight: 700,
         color: 'rgba(0,0,0,0.5)',
     },
     hoverPlay: {
@@ -93,6 +127,18 @@ const useStyles = makeStyles({
         color: '#aaa',
         border: '1px solid #aaa',
         minWidth: 'auto',
+        borderRadius: '20px',
+        padding: '4px 12px',
+        fontSize: '0.8rem',
+        ':hover': {
+            border: '1px solid #fff',
+            color: '#fff',
+        }
+    },
+    subtitle: {
+        color: '#aaa',
+        textTransform: 'uppercase',
+        display: 'block',
     }
 });
 
@@ -101,45 +147,76 @@ const Home = () => {
 
     const skillCategories = [
         {
-            title: 'Your Favorites',
-            subtitle: 'Languages & Core',
+            title: 'Albums for you',
+            subtitle: '',
             items: [
-                { name: 'Java', color: '#ff5252' },
-                { name: 'Python', color: '#3776ab' },
-                { name: 'System Design', color: '#ffffff' },
-                { name: 'TypeScript', color: '#3178c6' },
+                { name: 'Dhurandhar', color: '#ff5252' },
+                { name: 'P-POP CULTURE', color: '#3776ab' },
+                { name: 'Metro ... In Dino', color: '#ffffff' },
+                { name: 'Border 2', color: '#3178c6' },
             ]
         },
         {
-            title: 'Cloud & Infrastructure',
-            subtitle: 'Recommended for you',
+            title: 'Recommended for you',
+            subtitle: '',
             items: [
                 { name: 'Azure', color: '#007fff' },
                 { name: 'AWS', color: '#ff9900' },
                 { name: 'Kubernetes', color: '#326ce5' },
                 { name: 'Docker', color: '#2496ed' },
             ]
-        },
-        {
-            title: 'Backend Hits',
-            subtitle: 'Most Played',
-            items: [
-                { name: 'Spring Boot', color: '#6db33f' },
-                { name: 'Microservices', color: '#ffffff' },
-                { name: 'Node.js', color: '#6cc24a' },
-                { name: 'Redis', color: '#d82c20' },
-            ]
         }
     ];
 
     return (
         <div className={styles.container}>
+            {/* Header / Search */}
+            <div className={styles.headerBar}>
+                <div className={styles.searchContainer}>
+                    <Search size={20} color="#aaa" />
+                    <input type="text" placeholder="Search songs, albums, artists, podcasts" className={styles.searchInput} />
+                </div>
+                <div className={styles.profileActions}>
+                    <Cast size={24} color="#fff" />
+                    <div className={styles.smallAvatar}>
+                        <User size={20} />
+                    </div>
+                </div>
+            </div>
+
+            {/* Filters */}
             <div className={styles.filters}>
                 <div className={styles.filterList}>
-                    <Button shape="rounded" className={styles.filterBadgeActive}>Relax</Button>
-                    <Button shape="rounded" className={styles.filterBadge}>Energize</Button>
-                    <Button shape="rounded" className={styles.filterBadge}>Focus</Button>
-                    <Button shape="rounded" className={styles.filterBadge}>Commute</Button>
+                    {['Podcasts', 'Work out', 'Feel good', 'Energise', 'Relax', 'Romance', 'Party', 'Focus', 'Sleep'].map(filter => (
+                        <div key={filter} className={styles.filterBadge}>{filter}</div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Listen Again / Profile Section */}
+            <div className={styles.section}>
+                <div className={styles.profileHeader}>
+                    <div className={styles.smallAvatar}>
+                        <img src="https://ui-avatars.com/api/?name=Saptarshi+Das" alt="SD" style={{ borderRadius: '50%' }} />
+                    </div>
+                    <div>
+                        <Text size={200} style={{ color: '#aaa', display: 'block', textTransform: 'uppercase' }}>Saptarshi Das</Text>
+                        <Text size={600} weight="bold">Listen again</Text>
+                    </div>
+                </div>
+                <div className={styles.scrollContainer}>
+                    <div className={styles.mixCard}>
+                        <div className={styles.cardArt} style={{ background: 'linear-gradient(to bottom, #333, #000)' }}>
+                            <Play fill="white" size={48} />
+                        </div>
+                        <Text weight="bold" block>Supermix</Text>
+                    </div>
+                    <div className={styles.mixCard}>
+                        <div className={styles.cardArt} style={{ background: 'linear-gradient(to bottom, #444, #111)' }}>
+                            <Play fill="white" size={48} />
+                        </div>
+                        <Text weight="bold" block>My Mix 1</Text>
+                    </div>
                 </div>
             </div>
 

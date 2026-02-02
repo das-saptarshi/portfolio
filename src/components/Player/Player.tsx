@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Play, SkipBack, SkipForward, Repeat, Shuffle, Volume2, Mic2, ChevronDown } from 'lucide-react';
+import { Play, SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { bio, experience, skills } from '../../data/portfolio';
 import {
     makeStyles,
     tokens,
-    Slider,
     Button,
     Text,
     mergeClasses
@@ -14,98 +13,96 @@ const useStyles = makeStyles({
     player: {
         height: '80px',
         width: '100%',
-        background: `linear-gradient(to bottom, ${tokens.colorNeutralBackground2}, ${tokens.colorNeutralBackground1})`,
-        border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
+        backgroundColor: '#212121', // Dark grey background
+        border: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: `${tokens.spacingVerticalXXL} ${tokens.spacingHorizontalXXL}`,
+        padding: `0 ${tokens.spacingHorizontalL}`, // Reduced padding
         position: 'fixed',
         bottom: 0,
         zIndex: 100,
+    },
+    topProgressBar: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '3px',
+        backgroundColor: '#555',
         cursor: 'pointer',
-    },
-    trackInfo: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: tokens.spacingHorizontalM,
-        width: '30%',
         ':hover': {
-            opacity: 0.8,
-        },
+            height: '5px',
+        }
     },
-    albumArt: {
-        width: '48px',
-        height: '48px',
-        backgroundColor: tokens.colorNeutralBackground3,
-        borderRadius: tokens.borderRadiusMedium,
+    progressFill: {
+        height: '100%',
+        backgroundColor: '#ff0000', // YouTube Red
+    },
+    leftControls: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        gap: tokens.spacingHorizontalXL,
+        minWidth: '200px',
     },
-    emoji: {
-        fontSize: tokens.fontSizeHero700,
-    },
-    trackDetails: {
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    controls: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: tokens.spacingVerticalXS,
-        width: '40%',
-        cursor: 'default',
-    },
-    buttons: {
+    transportControls: {
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalL,
+        color: '#fff',
     },
-    playButton: {
-        width: '40px',
-        height: '40px',
-        borderRadius: tokens.borderRadiusCircular,
-        backgroundColor: tokens.colorNeutralForeground1,
-        color: tokens.colorNeutralBackground1,
+    playPause: {
+        width: '32px',
+        height: '32px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        ':hover': { // Ensure hover state is visible
-            backgroundColor: tokens.colorNeutralForeground2,
-        }
+        color: '#fff',
     },
-    progressBar: {
+    centerTrackInfo: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalL,
+        flex: 1,
+        justifyContent: 'center',
+    },
+    albumArt: {
+        width: '40px',
+        height: '40px',
+        borderRadius: '4px',
+        overflow: 'hidden',
+        backgroundColor: '#333',
+    },
+    trackDetails: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+    },
+    titleText: {
+        color: '#fff',
+        fontSize: '1rem',
+        lineHeight: '1.2',
+    },
+    artistRow: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    artistText: {
+        color: '#aaa',
+    },
+    trackActions: {
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalS,
-        width: '100%',
-        maxWidth: '600px', // Slightly wider
     },
-    sliderContainer: {
-        flex: 1, // Ensure slider takes up remaining space
-        display: 'flex',
-        alignItems: 'center',
-    },
-    volumeControls: {
+    rightControls: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        gap: tokens.spacingHorizontalM,
-        width: '30%',
-        cursor: 'default',
-    },
-    contactLink: {
-        fontSize: tokens.fontSizeBase200,
-        fontWeight: tokens.fontWeightSemibold,
-        color: tokens.colorNeutralForeground2,
-        marginRight: tokens.spacingHorizontalM,
-        textDecoration: 'none',
-        ':hover': {
-            color: tokens.colorNeutralForeground1,
-        },
+        gap: tokens.spacingHorizontalL,
+        minWidth: '200px',
+        color: '#fff',
     },
     // Expanded Overlay
     expandedOverlay: {
@@ -256,48 +253,59 @@ const Player = () => {
                 className={styles.player}
                 onClick={() => setIsExpanded(!isExpanded)}
             >
-                {/* Current Track Info */}
-                <div className={styles.trackInfo}>
+                {/* Top Progress Bar */}
+                <div className={styles.topProgressBar}>
+                    <div className={styles.progressFill} style={{ width: '40%' }}></div>
+                </div>
+
+                {/* Left: Controls & Time */}
+                <div
+                    className={styles.leftControls}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    <div className={styles.transportControls}>
+                        <SkipBack size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
+                        <div className={styles.playPause} onClick={() => { }}>
+                            <Play size={32} fill="currentColor" />
+                        </div>
+                        <SkipForward size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
+                    </div>
+                    <Text size={200} style={{ color: '#aaa', minWidth: '70px' }}>2:50 / 3:01</Text>
+                </div>
+
+                {/* Center: Track Info */}
+                <div className={styles.centerTrackInfo}>
                     <div className={styles.albumArt}>
-                        <span className={styles.emoji}>👨‍💻</span>
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png"
+                            alt="cover"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: tokens.borderRadiusMedium }}
+                        />
                     </div>
                     <div className={styles.trackDetails}>
-                        <Text weight="semibold">Saptarshi Das</Text>
-                        <Text size={200} style={{ color: '#aaa' }}>Software Engineer II • Microsoft</Text>
+                        <Text weight="semibold" className={styles.titleText}>Thodi Si Daaru</Text>
+                        <div className={styles.artistRow}>
+                            <Text size={200} className={styles.artistText}>AP Dhillon & Shreya Ghoshal • Thodi Si Daaru • 2025</Text>
+                        </div>
+                    </div>
+                    <div className={styles.trackActions}>
+                        <Button appearance="transparent" icon={<span style={{ fontSize: '1.2rem' }}>👎</span>} />
+                        <Button appearance="transparent" icon={<span style={{ fontSize: '1.2rem' }}>👍</span>} />
+                        <Button appearance="transparent" icon={<MoreHorizontal size={24} color="#ccc" />} />
                     </div>
                 </div>
 
-                {/* Controls */}
+                {/* Right: Volume & Extras */}
                 <div
-                    className={styles.controls}
+                    className={styles.rightControls}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div className={styles.buttons}>
-                        <Button appearance="transparent" icon={<Shuffle size={20} color="#aaa" />} />
-                        <Button appearance="transparent" icon={<SkipBack size={24} fill="currentColor" />} />
-                        <div className={styles.playButton} onClick={() => { }}>
-                            <Play size={24} fill="currentColor" style={{ marginLeft: 2 }} />
-                        </div>
-                        <Button appearance="transparent" icon={<SkipForward size={24} fill="currentColor" />} />
-                        <Button appearance="transparent" icon={<Repeat size={20} color="#aaa" />} />
+                    <Volume2 size={24} color="#aaa" />
+                    <Repeat size={24} color="#aaa" />
+                    <Shuffle size={24} color="#aaa" />
+                    <div onClick={() => setIsExpanded(!isExpanded)} style={{ cursor: 'pointer' }}>
+                        <ChevronDown size={28} style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                     </div>
-                    <div className={styles.progressBar}>
-                        <Text size={100} style={{ color: '#aaa' }}>2:14</Text>
-                        <div className={styles.sliderContainer}>
-                            <Slider defaultValue={40} style={{ width: '100%' }} />
-                        </div>
-                        <Text size={100} style={{ color: '#aaa' }}>5:30</Text>
-                    </div>
-                </div>
-
-                {/* Volume & Extras */}
-                <div
-                    className={styles.volumeControls}
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    <a href="mailto:saptarshidas743@gmail.com" className={styles.contactLink}>CONTACT ME</a>
-                    <Mic2 size={20} color="#aaa" />
-                    <Volume2 size={20} color="#aaa" />
                 </div>
             </div>
         </>
