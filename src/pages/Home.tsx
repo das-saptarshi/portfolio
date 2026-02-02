@@ -7,13 +7,12 @@ import {
 
 const useStyles = makeStyles({
     container: {
-        padding: '2rem',
+
     },
     headerBar: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        margin: '2rem',
     },
     searchContainer: {
         display: 'flex',
@@ -41,7 +40,7 @@ const useStyles = makeStyles({
         gap: '2rem',
     },
     section: {
-        margin: '3rem',
+        margin: `3rem 0`
     },
     sectionHeader: {
         display: 'flex',
