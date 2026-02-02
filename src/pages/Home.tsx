@@ -1,4 +1,4 @@
-import { Play, Search, Cast, User } from 'lucide-react';
+import { Search, User } from 'lucide-react';
 import {
     makeStyles,
     Button,

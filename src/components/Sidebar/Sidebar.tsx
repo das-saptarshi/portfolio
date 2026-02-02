@@ -13,13 +13,13 @@ const useStyles = makeStyles({
     sidebar: {
         width: '240px',
         height: '100%', // Take full height of parent
-        backgroundColor: tokens.colorNeutralBackground1, // Will need theme override for #030303
+        backgroundColor: '#030303', // YTM Black
         display: 'flex',
         flexDirection: 'column',
         padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalMNudge}`,
         borderRightWidth: tokens.strokeWidthThin,
         borderRightStyle: 'solid',
-        borderRightColor: tokens.colorNeutralStroke1,
+        borderRightColor: '#212121', // Subtle divider
         boxSizing: 'border-box', // Ensure padding doesn't affect width
     },
     brand: {
@@ -45,16 +45,16 @@ const useStyles = makeStyles({
     navItem: {
         justifyContent: 'flex-start',
         width: '100%', // Full width
-        color: tokens.colorNeutralForeground2,
+        color: '#aaaaaa', // Inactive text
         padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalM}`,
         ':hover': {
-            color: tokens.colorNeutralForeground1Hover,
-            backgroundColor: tokens.colorNeutralBackground1Hover,
+            color: '#ffffff',
+            backgroundColor: 'rgba(255,255,255,0.1)',
         },
     },
     navItemActive: {
-        color: tokens.colorNeutralForeground1Selected,
-        backgroundColor: tokens.colorNeutralBackground1Selected,
+        color: '#ffffff',
+        backgroundColor: 'rgba(255,255,255,0.1)', // Active bg
         fontWeight: tokens.fontWeightSemibold,
     },
     playlistSection: {
