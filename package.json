@@ -2,6 +2,7 @@
   "name": "temp-app",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://das-saptarshi.github.io/portfolio",
   "type": "module",
   "scripts": {
     "dev": "vite",
