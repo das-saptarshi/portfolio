@@ -51,13 +51,13 @@ const Player = () => {
             </div>
 
             {/* Player Bar */}
-            <div className={styles.player}>
+            <div
+                className={styles.player}
+                onClick={() => setIsExpanded(!isExpanded)}
+                style={{ cursor: 'pointer' }}
+            >
                 {/* Current Track Info */}
-                <div
-                    className={styles.trackInfo}
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    style={{ cursor: 'pointer' }}
-                >
+                <div className={styles.trackInfo}>
                     <div className={styles.albumArt}>
                         <span className={styles.emoji}>👨‍💻</span>
                     </div>
@@ -68,11 +68,15 @@ const Player = () => {
                 </div>
 
                 {/* Controls */}
-                <div className={styles.controls}>
+                <div
+                    className={styles.controls}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ cursor: 'default' }}
+                >
                     <div className={styles.buttons}>
                         <Shuffle size={20} color="#aaa" />
                         <SkipBack size={24} fill="currentColor" />
-                        <div className={styles.playButton}>
+                        <div className={styles.playButton} onClick={() => { }}>
                             <Play size={24} fill="currentColor" className={styles.playIcon} />
                         </div>
                         <SkipForward size={24} fill="currentColor" />
@@ -88,7 +92,11 @@ const Player = () => {
                 </div>
 
                 {/* Volume & Extras */}
-                <div className={styles.volumeControls}>
+                <div
+                    className={styles.volumeControls}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{ cursor: 'default' }}
+                >
                     <a href="mailto:saptarshidas743@gmail.com" className={styles.contactLink}>CONTACT ME</a>
                     <Mic2 size={20} color="#aaa" />
                     <Volume2 size={20} color="#aaa" />
