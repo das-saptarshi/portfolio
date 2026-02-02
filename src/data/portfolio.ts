@@ -71,23 +71,23 @@ export const bio = "I am a Software Engineer specializing in building scalable b
 // Home Page Data
 export const homeCategories = [
     {
-        title: 'Albums for you',
-        subtitle: '',
+        title: 'Core Competencies',
+        subtitle: 'Engineering Foundations',
         items: [
-            { name: 'Dhurandhar', color: '#ff5252' },
-            { name: 'P-POP CULTURE', color: '#3776ab' },
-            { name: 'Metro ... In Dino', color: '#ffffff' },
-            { name: 'Border 2', color: '#3178c6' },
+            { name: 'System Design', color: '#4caf50', desc: 'Scalable Architectures' },
+            { name: 'Java', color: '#ff5252', desc: 'Enterprise Backend' },
+            { name: 'Python', color: '#3776ab', desc: 'Data & Scripting' },
+            { name: 'TypeScript', color: '#3178c6', desc: 'Modern Frontend' },
         ]
     },
     {
-        title: 'Recommended for you',
-        subtitle: '',
+        title: 'Cloud & DevOps',
+        subtitle: 'Infrastructure as Code',
         items: [
-            { name: 'Azure', color: '#007fff' },
-            { name: 'AWS', color: '#ff9900' },
-            { name: 'Kubernetes', color: '#326ce5' },
-            { name: 'Docker', color: '#2496ed' },
+            { name: 'Azure', color: '#007fff', desc: 'Cloud Services' },
+            { name: 'AWS', color: '#ff9900', desc: 'Cloud Platforms' },
+            { name: 'Kubernetes', color: '#326ce5', desc: 'Orchestration' },
+            { name: 'Docker', color: '#2496ed', desc: 'Containerization' },
         ]
     }
 ];
@@ -154,6 +154,6 @@ export const currentPlayback = {
 // Playlists
 export const playlists = [
     { name: 'Leetcode', link: 'https://leetcode.com/das-saptarshi/' },
-    { name: 'GeeksForGeeks', link: 'https://auth.geeksforgeeks.org/user/das-saptarshi/' },
+    { name: 'GeeksForGeeks', link: 'https://auth.geeksforgeeks.org/user/das_saptarshi/' },
     { name: 'Github', link: 'https://github.com/das-saptarshi/' }
 ];

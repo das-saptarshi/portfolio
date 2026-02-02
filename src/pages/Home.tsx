@@ -182,8 +182,8 @@ const Home = () => {
                                         <Play fill="white" size={48} />
                                     </div>
                                 </div>
-                                <Text block weight="semibold" size={400}>{item.name} Mix</Text>
-                                <Text size={200} style={{ color: '#aaa' }}>Saptarshi Das • {Math.floor(Math.random() * 50) + 10} songs</Text>
+                                <Text block weight="semibold" size={400}>{item.name}</Text>
+                                <Text size={200} style={{ color: '#aaa' }}>{item.desc}</Text>
                             </div>
                         ))}
                     </div>
