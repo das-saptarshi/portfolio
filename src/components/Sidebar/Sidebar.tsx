@@ -21,6 +21,9 @@ const useStyles = makeStyles({
         borderRightStyle: 'solid',
         borderRightColor: '#212121', // Subtle divider
         boxSizing: 'border-box', // Ensure padding doesn't affect width
+        '@media (max-width: 768px)': {
+            display: 'none',
+        },
     },
     brand: {
         padding: `${tokens.spacingVerticalXXL} ${tokens.spacingHorizontalS}`,

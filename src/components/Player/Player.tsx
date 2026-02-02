@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Play, SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronDown, MoreHorizontal } from 'lucide-react';
+import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle } from 'lucide-react';
 import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
 import {
     makeStyles,
@@ -22,6 +22,10 @@ const useStyles = makeStyles({
         position: 'fixed',
         bottom: 0,
         zIndex: 100,
+        '@media (max-width: 768px)': {
+            bottom: '64px', // Above bottom nav
+            padding: `0 ${tokens.spacingHorizontalM}`,
+        },
     },
     topProgressBar: {
         position: 'absolute',
@@ -103,6 +107,22 @@ const useStyles = makeStyles({
         gap: tokens.spacingHorizontalL,
         minWidth: '200px',
         color: '#fff',
+    },
+    controlsLeft: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalMNudge,
+    },
+    controlButtons: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    mobileHidden: {
+        display: 'none',
+        '@media (min-width: 768px)': {
+            display: 'block',
+        },
     },
     // Expanded Overlay
     expandedOverlay: {
@@ -205,6 +225,12 @@ const useStyles = makeStyles({
 const Player = () => {
     const styles = useStyles();
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const togglePlay = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsPlaying(!isPlaying);
+    };
 
     return (
         <>
@@ -263,14 +289,17 @@ const Player = () => {
                     className={styles.leftControls}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div className={styles.transportControls}>
-                        <SkipBack size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
-                        <div className={styles.playPause} onClick={() => { }}>
-                            <Play size={32} fill="currentColor" />
+                    {/* Left: Controls */}
+                    <div className={styles.controlsLeft}>
+                        <div className={styles.controlButtons}>
+                            <SkipBack size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
+                            <div onClick={togglePlay} style={{ cursor: 'pointer' }}>
+                                {isPlaying ? <PauseCircle size={48} fill="white" /> : <PlayCircle size={48} fill="white" />}
+                            </div>
+                            <SkipForward size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
                         </div>
-                        <SkipForward size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
+                        <Text size={200} style={{ color: '#aaa', minWidth: '70px' }} className={styles.mobileHidden}>{currentPlayback.progress} / {currentPlayback.duration}</Text>
                     </div>
-                    <Text size={200} style={{ color: '#aaa', minWidth: '70px' }}>{currentPlayback.progress} / {currentPlayback.duration}</Text>
                 </div>
 
                 {/* Center: Track Info */}
