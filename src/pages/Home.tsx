@@ -7,13 +7,13 @@ import {
 
 const useStyles = makeStyles({
     container: {
-        paddingBottom: '2rem',
+        padding: '2rem',
     },
     headerBar: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: '2rem',
+        margin: '2rem',
     },
     searchContainer: {
         display: 'flex',
@@ -38,27 +38,10 @@ const useStyles = makeStyles({
     profileActions: {
         display: 'flex',
         alignItems: 'center',
-        gap: '1rem',
-    },
-    filters: {
-        marginBottom: '3rem',
-    },
-    filterList: {
-        display: 'flex',
-        gap: '0.8rem',
-    },
-    filterBadge: {
-        backgroundColor: 'rgba(255,255,255,0.1)',
-        color: '#ffffff',
-        border: '1px solid rgba(255,255,255,0.1)',
-        borderRadius: '8px',
-        padding: '0.4rem 1rem',
-        ':hover': {
-            backgroundColor: 'rgba(255,255,255,0.2)',
-        }
+        gap: '2rem',
     },
     section: {
-        marginBottom: '3rem',
+        margin: '3rem',
     },
     sectionHeader: {
         display: 'flex',
@@ -69,8 +52,8 @@ const useStyles = makeStyles({
     profileHeader: {
         display: 'flex',
         alignItems: 'center',
-        gap: '1rem',
-        marginBottom: '1rem',
+        gap: '2rem',
+        margin: '1rem',
     },
     smallAvatar: {
         width: '32px',
@@ -181,15 +164,6 @@ const Home = () => {
                     <div className={styles.smallAvatar}>
                         <User size={20} />
                     </div>
-                </div>
-            </div>
-
-            {/* Filters */}
-            <div className={styles.filters}>
-                <div className={styles.filterList}>
-                    {['Podcasts', 'Work out', 'Feel good', 'Energise', 'Relax', 'Romance', 'Party', 'Focus', 'Sleep'].map(filter => (
-                        <div key={filter} className={styles.filterBadge}>{filter}</div>
-                    ))}
                 </div>
             </div>
 
