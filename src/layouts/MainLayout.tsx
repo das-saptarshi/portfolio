@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Player from '../components/Player/Player';
+import styles from './MainLayout.module.css';
 
 const MainLayout = () => {
     return (
-        <div style={{ display: 'flex', height: '100vh', width: '100vw', backgroundColor: '#030303' }}>
+        <div className={styles.layout}>
             <Sidebar />
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <div className={styles.mainPanel}>
                 <div className="content-area">
                     <Outlet />
                 </div>

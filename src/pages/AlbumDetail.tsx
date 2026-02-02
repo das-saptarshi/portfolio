@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { Play, Clock, MoreHorizontal, PlusCircle } from 'lucide-react';
+import styles from './AlbumDetail.module.css';
 
 const experienceData: any = {
     microsoft: {
@@ -62,51 +63,50 @@ const AlbumDetail = () => {
     return (
         <div>
             {/* Header */}
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '2rem', padding: '2rem 0', background: `linear-gradient(to bottom, ${data.color}22, transparent)` }}>
-                <div style={{
-                    width: 200, height: 200, background: `linear-gradient(135deg, ${data.color}, #000)`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
-                }}>
-                    <h1 style={{ fontSize: '3rem', fontWeight: 800, color: 'white' }}>{data.title[0]}</h1>
+            <div
+                className={styles.header}
+                style={{ background: `linear-gradient(to bottom, ${data.color}22, transparent)` }}
+            >
+                <div
+                    className={styles.albumArt}
+                    style={{ background: `linear-gradient(135deg, ${data.color}, #000)` }}
+                >
+                    <h1 className={styles.albumInitial}>{data.title[0]}</h1>
                 </div>
                 <div>
-                    <span style={{ fontSize: '0.9rem', textTransform: 'uppercase', fontWeight: 700 }}>Album</span>
-                    <h1 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '0.5rem' }}>{data.title}</h1>
-                    <p style={{ color: '#ccc' }}>{data.role} • {data.year} • {data.tracks.length} songs</p>
+                    <span className={styles.albumType}>Album</span>
+                    <h1 className={styles.title}>{data.title}</h1>
+                    <p className={styles.meta}>{data.role} • {data.year} • {data.tracks.length} songs</p>
                 </div>
             </div>
 
             {/* Controls */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', padding: '1rem 0' }}>
-                <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'white', color: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-                    <Play fill="black" size={28} style={{ marginLeft: 4 }} />
+            <div className={styles.controls}>
+                <div className={styles.playButton}>
+                    <Play fill="black" size={28} className={styles.playIcon} />
                 </div>
                 <PlusCircle size={32} color="#ccc" />
                 <MoreHorizontal size={32} color="#ccc" />
             </div>
 
             {/* List */}
-            <div style={{ marginTop: '2rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr 100px', padding: '0.5rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: '#aaa', fontSize: '0.9rem' }}>
+            <div className={styles.trackList}>
+                <div className={styles.trackHeader}>
                     <span>#</span>
                     <span>Title</span>
-                    <span style={{ textAlign: 'right' }}><Clock size={16} /></span>
+                    <span className={styles.headerTime}><Clock size={16} /></span>
                 </div>
                 {data.tracks.map((track: any, index: number) => (
                     <div
                         key={index}
-                        className="track-row"
-                        style={{ display: 'grid', gridTemplateColumns: '50px 1fr 100px', padding: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#ccc', cursor: 'pointer' }}
+                        className={styles.trackRow}
                     >
                         <span className="track-index">{index + 1}</span>
-                        <span style={{ fontWeight: 500 }}>{track.title}</span>
-                        <span style={{ textAlign: 'right', fontSize: '0.85rem' }}>{track.duration}</span>
+                        <span className={styles.trackTitle}>{track.title}</span>
+                        <span className={styles.trackDuration}>{track.duration}</span>
                     </div>
                 ))}
             </div>
-            <style>{`
-        .track-row:hover { background-color: rgba(255,255,255,0.1); color: white; }
-      `}</style>
         </div>
     );
 };

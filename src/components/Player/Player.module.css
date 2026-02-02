@@ -1,0 +1,127 @@
+.player {
+    height: 80px;
+    width: 100%;
+    background-color: #212121;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+}
+
+.trackInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 30%;
+}
+
+.albumArt {
+    width: 48px;
+    height: 48px;
+    background-color: #333;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji {
+    font-size: 1.5rem;
+}
+
+.trackDetails {
+    /* No spec needed */
+}
+
+.trackName {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.artistName {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 40%;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.playButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.playIcon {
+    margin-left: 2px;
+}
+
+.progressBar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.time {
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.progressTrack {
+    flex: 1;
+    height: 4px;
+    background-color: #555;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progressFill {
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.volumeControls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 30%;
+}
+
+.contactLink {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #aaa;
+    margin-right: 1rem;
+    transition: color 0.2s;
+}
+
+.contactLink:hover {
+    color: white;
+}

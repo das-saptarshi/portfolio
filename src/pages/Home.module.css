@@ -1,0 +1,114 @@
+.container {
+    padding-bottom: 2rem;
+}
+
+.filters {
+    margin-bottom: 2rem;
+}
+
+.filterList {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.filterBadge {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.filterBadgeActive {
+    background: #333;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.moreButton {
+    background: transparent;
+    border: 1px solid #aaa;
+    color: #aaa;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.scrollContainer {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.mixCard {
+    min-width: 180px;
+    cursor: pointer;
+    position: relative;
+    /* composes: group; - Removed invalid composition */
+}
+
+.cardArt {
+    width: 180px;
+    height: 180px;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cardTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.hoverPlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.mixCard:hover .hoverPlay {
+    display: flex;
+}
+
+.mixName {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.mixDetails {
+    font-size: 0.9rem;
+    color: #aaa;
+}
