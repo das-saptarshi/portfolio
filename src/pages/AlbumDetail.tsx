@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { Play, Clock, MoreHorizontal, PlusCircle } from 'lucide-react';
 import {
     makeStyles,
-    shorthands,
     Text,
     Button
 } from '@fluentui/react-components';
@@ -12,7 +11,10 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'flex-end',
         gap: '2rem',
-        ...shorthands.padding('2rem', '0'),
+        paddingTop: '2rem',
+        paddingRight: 0,
+        paddingBottom: '2rem',
+        paddingLeft: 0,
     },
     albumArt: {
         width: '200px',
@@ -47,19 +49,22 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         gap: '2rem',
-        ...shorthands.padding('1rem', '0'),
+        paddingTop: '1rem',
+        paddingRight: 0,
+        paddingBottom: '1rem',
+        paddingLeft: 0,
     },
     playButton: {
         width: '56px',
         height: '56px',
-        ...shorthands.borderRadius('50%'),
+        borderRadius: '50%',
         backgroundColor: 'white',
         color: 'black',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        ...shorthands.border('none'),
+        border: 'none',
     },
     trackList: {
         marginTop: '2rem',
@@ -67,7 +72,10 @@ const useStyles = makeStyles({
     trackHeader: {
         display: 'grid',
         gridTemplateColumns: '50px 1fr 100px',
-        ...shorthands.padding('0.5rem', '1rem'),
+        paddingTop: '0.5rem',
+        paddingRight: '1rem',
+        paddingBottom: '0.5rem',
+        paddingLeft: '1rem',
         borderBottom: '1px solid rgba(255,255,255,0.1)',
         color: '#aaa',
         fontSize: '0.9rem',
@@ -78,7 +86,10 @@ const useStyles = makeStyles({
     trackRow: {
         display: 'grid',
         gridTemplateColumns: '50px 1fr 100px',
-        ...shorthands.padding('1rem', '1rem'),
+        paddingTop: '1rem',
+        paddingRight: '1rem',
+        paddingBottom: '1rem',
+        paddingLeft: '1rem',
         borderBottom: '1px solid rgba(255,255,255,0.05)',
         color: '#ccc',
         cursor: 'pointer',

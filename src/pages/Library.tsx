@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { Play } from 'lucide-react';
 import {
     makeStyles,
-    shorthands,
     Text
 } from '@fluentui/react-components';
 
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
     coverArt: {
         width: '200px',
         height: '200px',
-        ...shorthands.borderRadius('4px'),
+        borderRadius: '4px',
         marginBottom: '1rem',
         display: 'flex',
         flexDirection: 'column',
@@ -42,7 +41,7 @@ const useStyles = makeStyles({
         fontWeight: 800,
         textAlign: 'center',
         color: 'white',
-        ...shorthands.padding('1rem'),
+        padding: '1rem',
         zIndex: 10,
     },
     hoverPlay: {

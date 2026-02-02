@@ -2,7 +2,6 @@ import { Home, Library, Compass } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import {
     makeStyles,
-    shorthands,
     tokens,
     Button,
     Text,
@@ -16,12 +15,20 @@ const useStyles = makeStyles({
         backgroundColor: tokens.colorNeutralBackground1, // Will need theme override for #030303
         display: 'flex',
         flexDirection: 'column',
-        ...shorthands.padding(tokens.spacingVerticalL),
-        ...shorthands.borderRight(tokens.strokeWidthThin, 'solid', tokens.colorNeutralStroke1),
+        paddingTop: tokens.spacingVerticalL,
+        paddingRight: tokens.spacingHorizontalMNudge,
+        paddingBottom: tokens.spacingVerticalL,
+        paddingLeft: tokens.spacingHorizontalMNudge,
+        borderRightWidth: tokens.strokeWidthThin,
+        borderRightStyle: 'solid',
+        borderRightColor: tokens.colorNeutralStroke1,
         boxSizing: 'border-box', // Ensure padding doesn't affect width
     },
     brand: {
-        ...shorthands.padding('0', tokens.spacingHorizontalS, tokens.spacingVerticalXXL, tokens.spacingHorizontalS),
+        paddingTop: 0,
+        paddingRight: tokens.spacingHorizontalS,
+        paddingBottom: tokens.spacingVerticalXXL,
+        paddingLeft: tokens.spacingHorizontalS,
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalMNudge,
@@ -29,7 +36,7 @@ const useStyles = makeStyles({
     logo: {
         width: '32px',
         height: '32px',
-        ...shorthands.borderRadius(tokens.borderRadiusCircular),
+        borderRadius: tokens.borderRadiusCircular,
         background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)', // Brand color kept
         display: 'flex',
         alignItems: 'center',
@@ -44,7 +51,10 @@ const useStyles = makeStyles({
         justifyContent: 'flex-start',
         width: '100%', // Full width
         color: tokens.colorNeutralForeground2,
-        ...shorthands.padding(tokens.spacingVerticalM, tokens.spacingHorizontalM), // More breathing room
+        paddingTop: tokens.spacingVerticalM,
+        paddingRight: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingVerticalM,
+        paddingLeft: tokens.spacingHorizontalM,
         ':hover': {
             color: tokens.colorNeutralForeground1Hover,
             backgroundColor: tokens.colorNeutralBackground1Hover,
@@ -57,9 +67,13 @@ const useStyles = makeStyles({
     },
     playlistSection: {
         marginTop: tokens.spacingVerticalXXL,
-        ...shorthands.padding('0', tokens.spacingHorizontalM),
-        borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
         paddingTop: tokens.spacingVerticalM,
+        paddingRight: tokens.spacingHorizontalM,
+        paddingBottom: 0,
+        paddingLeft: tokens.spacingHorizontalM,
+        borderTopWidth: tokens.strokeWidthThin,
+        borderTopStyle: 'solid',
+        borderTopColor: tokens.colorNeutralStroke1,
     },
     playlistHeader: {
         fontSize: tokens.fontSizeBase200,

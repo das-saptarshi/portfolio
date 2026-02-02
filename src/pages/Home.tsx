@@ -1,7 +1,6 @@
 import { Play } from 'lucide-react';
 import {
     makeStyles,
-    shorthands,
     Button,
     Text
 } from '@fluentui/react-components';
@@ -67,7 +66,7 @@ const useStyles = makeStyles({
     cardArt: {
         width: '180px',
         height: '180px',
-        ...shorthands.borderRadius('4px'),
+        borderRadius: '4px',
         marginBottom: '0.75rem',
         display: 'flex',
         alignItems: 'center',
@@ -92,7 +91,7 @@ const useStyles = makeStyles({
     },
     moreButton: {
         color: '#aaa',
-        ...shorthands.borderColor('#aaa'),
+        border: '1px solid #aaa',
         minWidth: 'auto',
     }
 });

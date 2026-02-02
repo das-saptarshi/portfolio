@@ -1,14 +1,16 @@
 import { Play } from 'lucide-react';
 import {
     makeStyles,
-    shorthands,
     Text,
     Button
 } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     container: {
-        ...shorthands.padding('0', '0', '2rem', '0'),
+        paddingTop: 0,
+        paddingRight: 0,
+        paddingBottom: '2rem',
+        paddingLeft: 0,
     },
     header: {
         marginBottom: '2rem',
@@ -36,7 +38,7 @@ const useStyles = makeStyles({
         width: '100%',
         aspectRatio: '16/9',
         backgroundColor: '#333',
-        ...shorthands.borderRadius('8px'),
+        borderRadius: '8px',
         marginBottom: '1rem',
         position: 'relative',
         overflow: 'hidden',
@@ -64,7 +66,7 @@ const useStyles = makeStyles({
     avatar: {
         width: '40px',
         height: '40px',
-        ...shorthands.borderRadius('50%'),
+        borderRadius: '50%',
         backgroundColor: '#555',
         display: 'flex',
         alignItems: 'center',
