@@ -20,6 +20,7 @@ const useStyles = makeStyles({
         flex: 1,
         overflowY: 'auto',
         paddingBottom: '100px', // Space for player
+        background: 'radial-gradient(circle at 0% 0%, #1c3b42 0%, #030303 60%)', // Stronger Teal/Slate ambient
     }
 });
 
