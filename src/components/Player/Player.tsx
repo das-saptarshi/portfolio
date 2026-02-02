@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Play, SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronDown, MoreHorizontal } from 'lucide-react';
-import { bio, experience, skills } from '../../data/portfolio';
+import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
 import {
     makeStyles,
     tokens,
@@ -270,22 +270,22 @@ const Player = () => {
                         </div>
                         <SkipForward size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
                     </div>
-                    <Text size={200} style={{ color: '#aaa', minWidth: '70px' }}>2:50 / 3:01</Text>
+                    <Text size={200} style={{ color: '#aaa', minWidth: '70px' }}>{currentPlayback.progress} / {currentPlayback.duration}</Text>
                 </div>
 
                 {/* Center: Track Info */}
                 <div className={styles.centerTrackInfo}>
                     <div className={styles.albumArt}>
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png"
+                            src={currentPlayback.cover}
                             alt="cover"
                             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: tokens.borderRadiusMedium }}
                         />
                     </div>
                     <div className={styles.trackDetails}>
-                        <Text weight="semibold" className={styles.titleText}>Thodi Si Daaru</Text>
+                        <Text weight="semibold" className={styles.titleText}>{currentPlayback.title}</Text>
                         <div className={styles.artistRow}>
-                            <Text size={200} className={styles.artistText}>AP Dhillon & Shreya Ghoshal • Thodi Si Daaru • 2025</Text>
+                            <Text size={200} className={styles.artistText}>{currentPlayback.artist} • {currentPlayback.album} • {currentPlayback.year}</Text>
                         </div>
                     </div>
                     <div className={styles.trackActions}>

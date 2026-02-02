@@ -65,16 +65,13 @@ const useStyles = makeStyles({
     }
 });
 
+import { libraryAlbums } from '../data/portfolio';
+
 const Library = () => {
     const styles = useStyles();
     const navigate = useNavigate();
 
-    const albums = [
-        { id: 'microsoft', title: 'Microsoft', role: 'Software Engineer II', coverColor: '#00a4ef', year: '2024' },
-        { id: 'samsung', title: 'Samsung', role: 'SDE', coverColor: '#1428a0', year: '2023' },
-        { id: 'amazon', title: 'Amazon', role: 'SDE', coverColor: '#ff9900', year: '2022' },
-        { id: 'tcs', title: 'Tata Consultancy Services', role: 'Systems Engineer', coverColor: '#5f6db0', year: '2021' },
-    ];
+    const albums = libraryAlbums;
 
     return (
         <div>

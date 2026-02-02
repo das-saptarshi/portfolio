@@ -1,11 +1,12 @@
 import { Home, Library, Compass } from 'lucide-react';
+import { playlists } from '../../data/portfolio';
 import { NavLink } from 'react-router-dom';
 import {
     makeStyles,
     tokens,
     Button,
     Text,
-    mergeClasses
+    mergeClasses,
 } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
@@ -76,7 +77,7 @@ const useStyles = makeStyles({
         borderTopColor: tokens.colorNeutralStroke1,
     },
     playlistHeader: {
-        fontSize: tokens.fontSizeBase200,
+        fontSize: tokens.fontSizeBase300,
         color: tokens.colorNeutralForeground2,
         textTransform: 'uppercase',
         marginBottom: tokens.spacingVerticalM,
@@ -142,9 +143,9 @@ const Sidebar = () => {
             <div className={styles.playlistSection}>
                 <Text className={styles.playlistHeader}>Playlists</Text>
                 <div className={styles.playlistList}>
-                    <Text className={styles.playlistItem}>Deep Work Focus</Text>
-                    <Text className={styles.playlistItem}>System Design</Text>
-                    <Text className={styles.playlistItem}>Coding Favorites</Text>
+                    {playlists.map((playlist) => (
+                        <Text key={playlist.name} onClick={() => window.open(playlist.link, '_blank')} className={styles.playlistItem}>{playlist.name}</Text>
+                    ))}
                 </div>
             </div>
         </div>

@@ -82,43 +82,9 @@ const useStyles = makeStyles({
     }
 });
 
-const projects = [
-    {
-        title: 'Distributed Rate Limiter',
-        type: 'System Design',
-        views: '1.2M',
-        color: '#ff5252',
-        desc: 'High-performance rate limiting architecture'
-    },
-    {
-        title: 'Real-time Chat Engine',
-        type: 'WebSocket',
-        views: '840K',
-        color: '#3776ab',
-        desc: 'Scalable WebSocket implementation'
-    },
-    {
-        title: 'GraphQL Federation',
-        type: 'API Gateway',
-        views: '2.1M',
-        color: '#e535ab',
-        desc: 'Unified graph schema for microservices'
-    },
-    {
-        title: 'Kubernetes Operator',
-        type: 'DevOps',
-        views: '450K',
-        color: '#326ce5',
-        desc: 'Automating stateful deployments'
-    },
-    {
-        title: 'Event Sourcing Demo',
-        type: 'Architecture',
-        views: '900K',
-        color: '#6db33f',
-        desc: 'CQRS and Event Sourcing patterns'
-    }
-];
+import { exploreProjects } from '../data/portfolio';
+
+const projects = exploreProjects;
 
 const Explore = () => {
     const styles = useStyles();

@@ -125,31 +125,12 @@ const useStyles = makeStyles({
     }
 });
 
+import { homeCategories } from '../data/portfolio';
+
 const Home = () => {
     const styles = useStyles();
 
-    const skillCategories = [
-        {
-            title: 'Albums for you',
-            subtitle: '',
-            items: [
-                { name: 'Dhurandhar', color: '#ff5252' },
-                { name: 'P-POP CULTURE', color: '#3776ab' },
-                { name: 'Metro ... In Dino', color: '#ffffff' },
-                { name: 'Border 2', color: '#3178c6' },
-            ]
-        },
-        {
-            title: 'Recommended for you',
-            subtitle: '',
-            items: [
-                { name: 'Azure', color: '#007fff' },
-                { name: 'AWS', color: '#ff9900' },
-                { name: 'Kubernetes', color: '#326ce5' },
-                { name: 'Docker', color: '#2496ed' },
-            ]
-        }
-    ];
+    const skillCategories = homeCategories;
 
     return (
         <div className={styles.container}>

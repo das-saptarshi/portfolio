@@ -67,3 +67,93 @@ export const experience = [
 ];
 
 export const bio = "I am a Software Engineer specializing in building scalable backend systems, cloud infrastructure, and distributed architectures. I enjoy solving complex performance problems and designing reliable platforms.";
+
+// Home Page Data
+export const homeCategories = [
+    {
+        title: 'Albums for you',
+        subtitle: '',
+        items: [
+            { name: 'Dhurandhar', color: '#ff5252' },
+            { name: 'P-POP CULTURE', color: '#3776ab' },
+            { name: 'Metro ... In Dino', color: '#ffffff' },
+            { name: 'Border 2', color: '#3178c6' },
+        ]
+    },
+    {
+        title: 'Recommended for you',
+        subtitle: '',
+        items: [
+            { name: 'Azure', color: '#007fff' },
+            { name: 'AWS', color: '#ff9900' },
+            { name: 'Kubernetes', color: '#326ce5' },
+            { name: 'Docker', color: '#2496ed' },
+        ]
+    }
+];
+
+// Library Page Data
+export const libraryAlbums = [
+    { id: 'microsoft', title: 'Microsoft', role: 'Software Engineer II', coverColor: '#00a4ef', year: '2024' },
+    { id: 'samsung', title: 'Samsung', role: 'SDE', coverColor: '#1428a0', year: '2023' },
+    { id: 'amazon', title: 'Amazon', role: 'SDE', coverColor: '#ff9900', year: '2022' },
+    { id: 'tcs', title: 'Tata Consultancy Services', role: 'Systems Engineer', coverColor: '#5f6db0', year: '2021' },
+];
+
+// Explore Page Data
+export const exploreProjects = [
+    {
+        title: 'Distributed Rate Limiter',
+        type: 'System Design',
+        views: '1.2M',
+        color: '#ff5252',
+        desc: 'High-performance rate limiting architecture'
+    },
+    {
+        title: 'Real-time Chat Engine',
+        type: 'WebSocket',
+        views: '840K',
+        color: '#3776ab',
+        desc: 'Scalable WebSocket implementation'
+    },
+    {
+        title: 'GraphQL Federation',
+        type: 'API Gateway',
+        views: '2.1M',
+        color: '#e535ab',
+        desc: 'Unified graph schema for microservices'
+    },
+    {
+        title: 'Kubernetes Operator',
+        type: 'DevOps',
+        views: '450K',
+        color: '#326ce5',
+        desc: 'Automating stateful deployments'
+    },
+    {
+        title: 'Event Sourcing Demo',
+        type: 'Architecture',
+        views: '900K',
+        color: '#6db33f',
+        desc: 'CQRS and Event Sourcing patterns'
+    }
+];
+
+// Player Data
+export const currentPlayback = {
+    title: 'Thodi Si Daaru',
+    artist: 'AP Dhillon & Shreya Ghoshal',
+    album: 'Thodi Si Daaru',
+    year: '2025',
+    cover: 'https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png',
+    duration: '3:01',
+    progress: '2:50',
+    progressPercent: '94%'
+};
+
+// Playlists
+export const playlists = [
+    { name: 'Leetcode', link: 'https://leetcode.com/das-saptarshi/' },
+    { name: 'GeeksForGeeks', link: 'https://auth.geeksforgeeks.org/user/das-saptarshi/' },
+    { name: 'Github', link: 'https://github.com/das-saptarshi/' }
+];
