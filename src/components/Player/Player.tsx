@@ -4,6 +4,7 @@ import { bio, experience, skills } from '../../data/portfolio';
 import {
     makeStyles,
     shorthands,
+    tokens,
     Slider,
     Button,
     Text,
@@ -14,12 +15,12 @@ const useStyles = makeStyles({
     player: {
         height: '80px',
         width: '100%',
-        backgroundColor: '#212121',
-        borderTop: '1px solid rgba(255,255,255,0.1)',
+        backgroundColor: tokens.colorNeutralBackground2, // #212121 approx
+        borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        ...shorthands.padding('0', '2rem'),
+        ...shorthands.padding('0', tokens.spacingHorizontalXXL),
         position: 'fixed',
         bottom: 0,
         zIndex: 100,
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
     trackInfo: {
         display: 'flex',
         alignItems: 'center',
-        gap: '1rem',
+        gap: tokens.spacingHorizontalM,
         width: '30%',
         ':hover': {
             opacity: 0.8,
@@ -37,14 +38,14 @@ const useStyles = makeStyles({
     albumArt: {
         width: '48px',
         height: '48px',
-        backgroundColor: '#333',
-        ...shorthands.borderRadius('4px'),
+        backgroundColor: tokens.colorNeutralBackground3,
+        ...shorthands.borderRadius(tokens.borderRadiusMedium),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
     },
     emoji: {
-        fontSize: '1.5rem',
+        fontSize: tokens.fontSizeHero700,
     },
     trackDetails: {
         display: 'flex',
@@ -54,49 +55,57 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '0.5rem',
+        gap: tokens.spacingVerticalXS,
         width: '40%',
         cursor: 'default',
     },
     buttons: {
         display: 'flex',
         alignItems: 'center',
-        gap: '1.5rem',
+        gap: tokens.spacingHorizontalL,
     },
     playButton: {
         width: '40px',
         height: '40px',
-        ...shorthands.borderRadius('50%'),
-        backgroundColor: 'white',
-        color: 'black',
+        ...shorthands.borderRadius(tokens.borderRadiusCircular),
+        backgroundColor: tokens.colorNeutralForeground1,
+        color: tokens.colorNeutralBackground1,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
+        ':hover': { // Ensure hover state is visible
+            backgroundColor: tokens.colorNeutralForeground2,
+        }
     },
     progressBar: {
         display: 'flex',
         alignItems: 'center',
-        gap: '0.5rem',
+        gap: tokens.spacingHorizontalS,
         width: '100%',
-        maxWidth: '500px',
+        maxWidth: '600px', // Slightly wider
+    },
+    sliderContainer: {
+        flex: 1, // Ensure slider takes up remaining space
+        display: 'flex',
+        alignItems: 'center',
     },
     volumeControls: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        gap: '1rem',
+        gap: tokens.spacingHorizontalM,
         width: '30%',
         cursor: 'default',
     },
     contactLink: {
-        fontSize: '0.9rem',
-        fontWeight: 600,
-        color: '#aaa',
-        marginRight: '1rem',
+        fontSize: tokens.fontSizeBase200,
+        fontWeight: tokens.fontWeightSemibold,
+        color: tokens.colorNeutralForeground2,
+        marginRight: tokens.spacingHorizontalM,
         textDecoration: 'none',
         ':hover': {
-            color: 'white',
+            color: tokens.colorNeutralForeground1,
         },
     },
     // Expanded Overlay
@@ -106,13 +115,13 @@ const useStyles = makeStyles({
         left: '240px', // Respect sidebar
         width: 'calc(100vw - 240px)',
         height: 'calc(100vh - 80px)',
-        backgroundColor: '#030303',
+        backgroundColor: tokens.colorNeutralBackground1, // Use standard bg
         zIndex: 90,
         transform: 'translateY(100%)',
         transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         display: 'flex',
         flexDirection: 'column',
-        ...shorthands.padding('2rem'),
+        ...shorthands.padding(tokens.spacingVerticalXXL),
         overflowY: 'auto',
     },
     expandedOpen: {
@@ -121,32 +130,32 @@ const useStyles = makeStyles({
     expandedHeader: {
         display: 'flex',
         justifyContent: 'flex-end',
-        marginBottom: '2rem',
+        marginBottom: tokens.spacingVerticalXXL,
     },
     profileSection: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginBottom: '3rem',
+        marginBottom: tokens.spacingVerticalXXXL,
         textAlign: 'center',
     },
     largeAvatar: {
         width: '120px',
         height: '120px',
-        backgroundColor: '#333',
-        ...shorthands.borderRadius('50%'),
+        backgroundColor: tokens.colorNeutralBackground3,
+        ...shorthands.borderRadius(tokens.borderRadiusCircular),
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '3rem',
-        marginBottom: '1.5rem',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+        fontSize: tokens.fontSizeHero900,
+        marginBottom: tokens.spacingVerticalL,
+        boxShadow: tokens.shadow16,
     },
     bio: {
         maxWidth: '600px',
-        color: '#ccc',
-        marginTop: '1rem',
-        lineHeight: '1.6',
+        color: tokens.colorNeutralForeground2,
+        marginTop: tokens.spacingVerticalM,
+        lineHeight: tokens.lineHeightBase400,
     },
     columns: {
         display: 'flex',
@@ -161,39 +170,39 @@ const useStyles = makeStyles({
         minWidth: '300px',
     },
     sectionTitle: {
-        fontSize: '1.2rem',
-        fontWeight: 700,
-        marginBottom: '1.5rem',
-        borderBottom: '1px solid rgba(255,255,255,0.1)',
-        paddingBottom: '0.5rem',
-        color: '#fff',
+        fontSize: tokens.fontSizeBase500,
+        fontWeight: tokens.fontWeightBold,
+        marginBottom: tokens.spacingVerticalL,
+        borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
+        paddingBottom: tokens.spacingVerticalS,
+        color: tokens.colorNeutralForeground1,
     },
     timelineList: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '1.5rem',
+        gap: tokens.spacingVerticalL,
     },
     timelineItem: {
         display: 'flex',
-        gap: '1rem',
+        gap: tokens.spacingHorizontalM,
     },
     timelineYear: {
-        fontWeight: 600,
-        color: '#aaa',
+        fontWeight: tokens.fontWeightSemibold,
+        color: tokens.colorNeutralForeground3,
         minWidth: '60px',
     },
     skillCloud: {
         display: 'flex',
         flexWrap: 'wrap',
-        gap: '0.8rem',
+        gap: tokens.spacingHorizontalS,
     },
     skillBadge: {
-        ...shorthands.padding('0.5rem', '1rem'),
-        backgroundColor: 'rgba(255,255,255,0.08)',
-        ...shorthands.borderRadius('20px'),
-        fontSize: '0.9rem',
-        color: '#ddd',
-        border: '1px solid rgba(255,255,255,0.05)',
+        ...shorthands.padding(tokens.spacingVerticalXS, tokens.spacingHorizontalM),
+        backgroundColor: tokens.colorNeutralBackgroundAlpha,
+        ...shorthands.borderRadius(tokens.borderRadiusMedium),
+        fontSize: tokens.fontSizeBase300,
+        color: tokens.colorNeutralForeground1,
+        border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
     }
 });
 
@@ -275,7 +284,9 @@ const Player = () => {
                     </div>
                     <div className={styles.progressBar}>
                         <Text size={100} style={{ color: '#aaa' }}>2:14</Text>
-                        <Slider defaultValue={40} style={{ width: '100%' }} />
+                        <div className={styles.sliderContainer}>
+                            <Slider defaultValue={40} style={{ width: '100%' }} />
+                        </div>
                         <Text size={100} style={{ color: '#aaa' }}>5:30</Text>
                     </div>
                 </div>

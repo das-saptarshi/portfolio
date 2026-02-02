@@ -5,30 +5,32 @@ import {
     shorthands,
     tokens,
     Button,
-    Text
+    Text,
+    mergeClasses
 } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     sidebar: {
         width: '240px',
-        height: 'calc(100vh - 80px)',
-        backgroundColor: '#030303', // Keep strictly dark
+        height: '100%', // Take full height of parent
+        backgroundColor: tokens.colorNeutralBackground1, // Will need theme override for #030303
         display: 'flex',
         flexDirection: 'column',
-        ...shorthands.padding('1rem'),
-        ...shorthands.borderRight('1px', 'solid', '#212121'),
+        ...shorthands.padding(tokens.spacingVerticalL),
+        ...shorthands.borderRight(tokens.strokeWidthThin, 'solid', tokens.colorNeutralStroke1),
+        boxSizing: 'border-box', // Ensure padding doesn't affect width
     },
     brand: {
-        ...shorthands.padding('0', '1rem', '2rem', '1rem'),
+        ...shorthands.padding('0', tokens.spacingHorizontalS, tokens.spacingVerticalXXL, tokens.spacingHorizontalS),
         display: 'flex',
         alignItems: 'center',
-        gap: '0.5rem',
+        gap: tokens.spacingHorizontalMNudge,
     },
     logo: {
         width: '32px',
         height: '32px',
-        ...shorthands.borderRadius('50%'),
-        background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
+        ...shorthands.borderRadius(tokens.borderRadiusCircular),
+        background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)', // Brand color kept
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -36,43 +38,49 @@ const useStyles = makeStyles({
     nav: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '0.5rem',
+        gap: tokens.spacingVerticalXS,
     },
     navItem: {
         justifyContent: 'flex-start',
-        color: '#aaaaaa', // Custom color to match previous design
+        width: '100%', // Full width
+        color: tokens.colorNeutralForeground2,
+        ...shorthands.padding(tokens.spacingVerticalM, tokens.spacingHorizontalM), // More breathing room
         ':hover': {
             color: tokens.colorNeutralForeground1Hover,
             backgroundColor: tokens.colorNeutralBackground1Hover,
         },
-        '&.active': {
-            color: '#ffffff',
-            backgroundColor: '#212121',
-            fontWeight: 600,
-        }
+    },
+    navItemActive: {
+        color: tokens.colorNeutralForeground1Selected,
+        backgroundColor: tokens.colorNeutralBackground1Selected,
+        fontWeight: tokens.fontWeightSemibold,
     },
     playlistSection: {
-        marginTop: '2rem',
-        ...shorthands.padding('0', '1rem'),
+        marginTop: tokens.spacingVerticalXXL,
+        ...shorthands.padding('0', tokens.spacingHorizontalM),
+        borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
+        paddingTop: tokens.spacingVerticalM,
     },
     playlistHeader: {
-        fontSize: '0.8rem',
-        color: '#aaaaaa',
+        fontSize: tokens.fontSizeBase200,
+        color: tokens.colorNeutralForeground2,
         textTransform: 'uppercase',
-        marginBottom: '1rem',
+        marginBottom: tokens.spacingVerticalM,
         display: 'block',
+        letterSpacing: '1px',
+        fontWeight: tokens.fontWeightBold,
     },
     playlistList: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '1rem',
+        gap: tokens.spacingVerticalS,
     },
     playlistItem: {
         cursor: 'pointer',
-        color: '#aaaaaa',
-        fontSize: '0.9rem',
+        color: tokens.colorNeutralForeground2,
+        fontSize: tokens.fontSizeBase300,
         ':hover': {
-            color: 'white',
+            color: tokens.colorNeutralForeground1Hover,
         }
     }
 });
@@ -99,14 +107,14 @@ const Sidebar = () => {
                     <NavLink
                         key={item.path}
                         to={item.path}
-                        style={{ textDecoration: 'none' }}
+                        style={{ textDecoration: 'none', display: 'block', width: '100%' }}
                         className={({ isActive }) => isActive ? 'active' : ''}
                     >
                         {({ isActive }) => (
                             <Button
                                 appearance="subtle"
                                 icon={<item.icon size={24} strokeWidth={isActive ? 2.5 : 2} />}
-                                className={`${styles.navItem} ${isActive ? 'active' : ''}`}
+                                className={mergeClasses(styles.navItem, isActive && styles.navItemActive)}
                                 size="large"
                                 shape="rounded"
                             >

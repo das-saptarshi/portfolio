@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Player from '../components/Player/Player';
-import { makeStyles } from '@fluentui/react-components';
+import { makeStyles, tokens } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     layout: {
         display: 'flex',
         height: '100vh',
         width: '100vw',
-        backgroundColor: '#030303',
-        color: 'white', // Ensure text inherits white by default
+        backgroundColor: tokens.colorNeutralBackground1,
+        color: tokens.colorNeutralForeground1,
     },
     mainPanel: {
         flex: 1,
