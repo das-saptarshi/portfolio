@@ -167,7 +167,7 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Listen Again / Profile Section */}
+            {/* Profile Section */}
             <div className={styles.section}>
                 <div className={styles.profileHeader}>
                     <div className={styles.smallAvatar}>
@@ -176,20 +176,6 @@ const Home = () => {
                     <div>
                         <Text size={200} style={{ color: '#aaa', display: 'block', textTransform: 'uppercase' }}>Saptarshi Das</Text>
                         <Text size={600} weight="bold">Listen again</Text>
-                    </div>
-                </div>
-                <div className={styles.scrollContainer}>
-                    <div className={styles.mixCard}>
-                        <div className={styles.cardArt} style={{ background: 'linear-gradient(to bottom, #333, #000)' }}>
-                            <Play fill="white" size={48} />
-                        </div>
-                        <Text weight="bold" block>Supermix</Text>
-                    </div>
-                    <div className={styles.mixCard}>
-                        <div className={styles.cardArt} style={{ background: 'linear-gradient(to bottom, #444, #111)' }}>
-                            <Play fill="white" size={48} />
-                        </div>
-                        <Text weight="bold" block>My Mix 1</Text>
                     </div>
                 </div>
             </div>
