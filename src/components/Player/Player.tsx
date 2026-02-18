@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle } from 'lucide-react';
+import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle, ThumbsUp } from 'lucide-react';
 import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
 import {
     makeStyles,
@@ -365,8 +365,7 @@ const Player = () => {
                         <Text className={styles.artistText}>{currentPlayback.artist} • {currentPlayback.album} • {currentPlayback.year}</Text>
                     </div>
                     <div className={styles.trackActions}>
-                        <Button appearance="transparent" icon={<span style={{ fontSize: '1rem' }}>👎</span>} />
-                        <Button appearance="transparent" icon={<span style={{ fontSize: '1rem' }}>👍</span>} />
+                        <Button appearance="transparent" icon={<ThumbsUp size={20} color="#888" />} />
                         <Button appearance="transparent" icon={<MoreHorizontal size={20} color="#888" />} />
                     </div>
                 </div>
