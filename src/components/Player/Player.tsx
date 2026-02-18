@@ -291,7 +291,9 @@ const Player = () => {
                 </div>
 
                 <div className={styles.profileSection}>
-                    <div className={styles.largeAvatar}>👨‍💻</div>
+                    <div className={styles.largeAvatar}>
+                        <img src={`${import.meta.env.BASE_URL}website/images/headshot.jpg`} alt="SD" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                    </div>
                     <Text size={900} weight="bold">Saptarshi Das</Text>
                     <Text size={500} style={{ color: '#aaa', marginTop: '8px' }}>Software Engineer II • Microsoft</Text>
                     <Text className={styles.bio}>{bio}</Text>

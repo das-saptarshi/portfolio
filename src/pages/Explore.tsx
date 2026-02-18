@@ -124,7 +124,9 @@ const Explore = () => {
                             </div>
                         </div>
                         <div className={styles.details}>
-                            <div className={styles.avatar}>💻</div>
+                            <div className={styles.avatar}>
+                                <img src={`${import.meta.env.BASE_URL}website/images/headshot.jpg`} alt="SD" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                            </div>
                             <div className={styles.textInfo}>
                                 <Text weight="bold" size={400}>{project.title}</Text>
                                 <Text size={200} className={styles.meta}>Saptarshi Das • {project.views} views • 2 days ago</Text>

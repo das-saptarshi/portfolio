@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, User, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
     makeStyles,
     Button,
@@ -273,7 +273,7 @@ const Home = () => {
                 </div>
                 <div className={styles.profileActions}>
                     <div className={styles.profileAvatar}>
-                        <User size={18} color="#ccc" />
+                        <img src={`${import.meta.env.BASE_URL}website/images/headshot.jpg`} alt="SD" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
                     </div>
                 </div>
             </div>
@@ -295,9 +295,9 @@ const Home = () => {
             <div className={styles.profileSection}>
                 <div className={styles.profileImg}>
                     <img
-                        src="https://ui-avatars.com/api/?name=Saptarshi+Das&background=333&color=fff"
+                        src={`${import.meta.env.BASE_URL}website/images/headshot.jpg`}
                         alt="SD"
-                        style={{ width: '100%', height: '100%', borderRadius: '50%' }}
+                        style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
                     />
                 </div>
                 <div>
