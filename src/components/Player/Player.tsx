@@ -221,6 +221,7 @@ const useStyles = makeStyles({
         marginTop: '12px',
         lineHeight: '1.6',
         fontSize: '14px',
+        textAlign: 'center',
     },
     columns: {
         display: 'flex',
