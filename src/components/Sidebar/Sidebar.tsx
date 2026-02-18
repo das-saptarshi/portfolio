@@ -1,4 +1,4 @@
-import { Home, Library, Compass } from 'lucide-react';
+import { Home, Library, Compass, Menu } from 'lucide-react';
 import { playlists } from '../../data/portfolio';
 import { NavLink } from 'react-router-dom';
 import {
@@ -12,44 +12,72 @@ import {
 const useStyles = makeStyles({
     sidebar: {
         width: '240px',
-        height: '100%', // Take full height of parent
-        backgroundColor: '#030303', // YTM Black
+        height: '100vh',
+        backgroundColor: '#030303',
         display: 'flex',
         flexDirection: 'column',
-        padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalMNudge}`,
+        paddingTop: tokens.spacingVerticalS,
+        paddingRight: tokens.spacingHorizontalS,
+        paddingBottom: tokens.spacingVerticalS,
+        paddingLeft: tokens.spacingHorizontalS,
         borderRightWidth: tokens.strokeWidthThin,
         borderRightStyle: 'solid',
-        borderRightColor: '#212121', // Subtle divider
-        boxSizing: 'border-box', // Ensure padding doesn't affect width
+        borderRightColor: 'rgba(255,255,255,0.07)',
+        boxSizing: 'border-box',
+        flexShrink: 0,
+        zIndex: 50,
         '@media (max-width: 768px)': {
             display: 'none',
         },
     },
-    brand: {
-        padding: `${tokens.spacingVerticalXXL} ${tokens.spacingHorizontalS}`,
+    topRow: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalMNudge,
+        gap: tokens.spacingHorizontalM,
+        paddingTop: tokens.spacingVerticalM,
+        paddingRight: tokens.spacingHorizontalS,
+        paddingBottom: tokens.spacingVerticalXXL,
+        paddingLeft: tokens.spacingHorizontalS,
+    },
+    hamburger: {
+        color: '#aaa',
+        minWidth: 'auto',
+        padding: '8px',
+        ':hover': {
+            color: '#fff',
+            backgroundColor: 'rgba(255,255,255,0.1)',
+        },
+    },
+    brand: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalS,
     },
     logo: {
-        width: '32px',
-        height: '32px',
+        width: '28px',
+        height: '28px',
         borderRadius: tokens.borderRadiusCircular,
-        background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)', // Brand color kept
+        background: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        flexShrink: 0,
     },
     nav: {
         display: 'flex',
         flexDirection: 'column',
-        gap: tokens.spacingVerticalXS,
+        gap: tokens.spacingVerticalXXS,
     },
     navItem: {
         justifyContent: 'flex-start',
-        width: '100%', // Full width
-        color: '#aaaaaa', // Inactive text
-        padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalM}`,
+        width: '100%',
+        color: '#aaaaaa',
+        paddingTop: tokens.spacingVerticalSNudge,
+        paddingRight: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingVerticalSNudge,
+        paddingLeft: tokens.spacingHorizontalM,
+        borderRadius: '10px',
+        transition: 'all 0.15s ease',
         ':hover': {
             color: '#ffffff',
             backgroundColor: 'rgba(255,255,255,0.1)',
@@ -57,23 +85,26 @@ const useStyles = makeStyles({
     },
     navItemActive: {
         color: '#ffffff',
-        backgroundColor: 'rgba(255,255,255,0.1)', // Active bg
+        backgroundColor: 'rgba(255,255,255,0.1)',
         fontWeight: tokens.fontWeightSemibold,
     },
     playlistSection: {
-        marginTop: tokens.spacingVerticalXXL,
-        padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalM} 0 ${tokens.spacingHorizontalM}`,
+        marginTop: 'auto',
+        paddingTop: tokens.spacingVerticalL,
+        paddingRight: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingVerticalM,
+        paddingLeft: tokens.spacingHorizontalM,
         borderTopWidth: tokens.strokeWidthThin,
         borderTopStyle: 'solid',
-        borderTopColor: tokens.colorNeutralStroke1,
+        borderTopColor: 'rgba(255,255,255,0.07)',
     },
     playlistHeader: {
-        fontSize: tokens.fontSizeBase300,
-        color: tokens.colorNeutralForeground2,
+        fontSize: '11px',
+        color: '#888',
         textTransform: 'uppercase',
         marginBottom: tokens.spacingVerticalM,
         display: 'block',
-        letterSpacing: '1px',
+        letterSpacing: '1.2px',
         fontWeight: tokens.fontWeightBold,
     },
     playlistList: {
@@ -83,10 +114,11 @@ const useStyles = makeStyles({
     },
     playlistItem: {
         cursor: 'pointer',
-        color: tokens.colorNeutralForeground2,
-        fontSize: tokens.fontSizeBase300,
+        color: '#aaa',
+        fontSize: '13px',
+        transition: 'color 0.15s ease',
         ':hover': {
-            color: tokens.colorNeutralForeground1Hover,
+            color: '#fff',
         }
     }
 });
@@ -101,13 +133,23 @@ const Sidebar = () => {
 
     return (
         <div className={styles.sidebar}>
-            <div className={styles.brand}>
-                <div className={styles.logo}>
-                    <Text style={{ color: 'white', fontWeight: 'bold' }}>S</Text>
+            {/* Top row: Hamburger + Brand */}
+            <div className={styles.topRow}>
+                <Button
+                    appearance="subtle"
+                    icon={<Menu size={22} />}
+                    className={styles.hamburger}
+                    size="small"
+                />
+                <div className={styles.brand}>
+                    <div className={styles.logo}>
+                        <Text style={{ color: 'white', fontWeight: 'bold', fontSize: '13px' }}>S</Text>
+                    </div>
+                    <Text size={500} weight="bold" style={{ letterSpacing: '-0.5px' }}>Music</Text>
                 </div>
-                <Text size={500} weight="bold" style={{ letterSpacing: '-0.5px' }}>Music</Text>
             </div>
 
+            {/* Navigation */}
             <nav className={styles.nav}>
                 {navItems.map((item) => (
                     <NavLink
@@ -119,7 +161,7 @@ const Sidebar = () => {
                         {({ isActive }) => (
                             <Button
                                 appearance="subtle"
-                                icon={<item.icon size={24} strokeWidth={isActive ? 2.5 : 2} />}
+                                icon={<item.icon size={22} strokeWidth={isActive ? 2.5 : 1.8} />}
                                 className={mergeClasses(styles.navItem, isActive && styles.navItemActive)}
                                 size="large"
                                 shape="rounded"
@@ -131,8 +173,9 @@ const Sidebar = () => {
                 ))}
             </nav>
 
+            {/* Playlists */}
             <div className={styles.playlistSection}>
-                <Text className={styles.playlistHeader}>Playlists</Text>
+                <Text className={styles.playlistHeader}>Profiles</Text>
                 <div className={styles.playlistList}>
                     {playlists.map((playlist) => (
                         <Text key={playlist.name} onClick={() => window.open(playlist.link, '_blank')} className={styles.playlistItem}>{playlist.name}</Text>

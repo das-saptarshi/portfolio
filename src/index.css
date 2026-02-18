@@ -5,7 +5,7 @@
   --text-secondary: #aaaaaa;
   --accent-color: #ffffff;
   --hover-color: rgba(255, 255, 255, 0.1);
-  --font-main: 'Roboto', 'Inter', system-ui, sans-serif;
+  --font-main: 'Inter', 'Roboto', system-ui, sans-serif;
   --transition: all 0.2s ease;
   --sidebar-width: 240px;
   --player-height: 80px;
@@ -23,7 +23,6 @@ body {
   color: var(--text-primary);
   line-height: 1.5;
   overflow: hidden;
-  /* App-like feel */
 }
 
 a {
@@ -31,31 +30,22 @@ a {
   color: inherit;
 }
 
-/* Scrollbar */
+/* Scrollbar — thinner, YTM-style */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030303;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 6px;
-  border: 3px solid #030303;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #888;
-}
-
-.content-area {
-  height: calc(100vh - var(--player-height));
-  overflow-y: auto;
-  padding: 2rem;
-  padding-bottom: 4rem;
-  background-color: var(--bg-color);
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
 /* Utility */

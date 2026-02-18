@@ -6,62 +6,85 @@ import {
 } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
+    container: {
+        paddingTop: '32px',
+        paddingRight: '48px',
+        paddingBottom: '2rem',
+        paddingLeft: '48px',
+        '@media (max-width: 768px)': {
+            paddingTop: '20px',
+            paddingRight: '16px',
+            paddingBottom: '2rem',
+            paddingLeft: '16px',
+        },
+    },
     title: {
-        marginBottom: '2rem',
+        marginBottom: '28px',
     },
     grid: {
         display: 'flex',
-        gap: '2rem',
+        gap: '24px',
         flexWrap: 'wrap',
     },
     albumCard: {
         width: '200px',
         cursor: 'pointer',
+        transition: 'transform 0.15s ease',
         ':hover': {
-            '& .hoverPlay': {
-                display: 'flex'
-            }
+            transform: 'translateY(-2px)',
         }
     },
     coverArt: {
         width: '200px',
         height: '200px',
         borderRadius: '4px',
-        marginBottom: '1rem',
+        marginBottom: '12px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
         position: 'relative',
         overflow: 'hidden',
     },
     companyName: {
-        fontSize: '1.5rem',
+        fontSize: '1.4rem',
         fontWeight: 800,
         textAlign: 'center',
         color: 'white',
         padding: '1rem',
         zIndex: 10,
+        textShadow: '0 2px 8px rgba(0,0,0,0.4)',
     },
-    hoverPlay: {
+    hoverOverlay: {
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
         backgroundColor: 'rgba(0,0,0,0.4)',
-        display: 'none',
+        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 20,
+        opacity: 0,
+        transition: 'opacity 0.2s ease',
+    },
+    albumCardHover: {
+        ':hover': {
+            '& > div:first-child > div:last-child': {
+                opacity: 1,
+            }
+        }
     },
     albumTitle: {
         display: 'block',
-        marginTop: '0.5rem',
+        marginTop: '4px',
+        fontSize: '14px',
     },
     albumDetails: {
         color: '#aaa',
+        fontSize: '12px',
     }
 });
 
@@ -74,7 +97,7 @@ const Library = () => {
     const albums = libraryAlbums;
 
     return (
-        <div>
+        <div className={styles.container}>
             <Text size={900} weight="bold" block className={styles.title}>Your Library</Text>
 
             <div className={styles.grid}>
@@ -82,7 +105,7 @@ const Library = () => {
                     <div
                         key={album.id}
                         onClick={() => navigate(`/album/${album.id}`)}
-                        className={styles.albumCard}
+                        className={`${styles.albumCard} ${styles.albumCardHover}`}
                     >
                         <div
                             className={styles.coverArt}
@@ -91,7 +114,7 @@ const Library = () => {
                             <Text className={styles.companyName}>{album.title}</Text>
 
                             {/* Overlay */}
-                            <div className={`hoverPlay ${styles.hoverPlay}`}>
+                            <div className={styles.hoverOverlay}>
                                 <Play fill="white" size={48} />
                             </div>
                         </div>

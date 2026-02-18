@@ -1,6 +1,6 @@
 import { Home, Library, Compass } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
+import { makeStyles, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     bottomNav: {
@@ -10,12 +10,12 @@ const useStyles = makeStyles({
         left: 0,
         width: '100%',
         height: '64px',
-        backgroundColor: '#212121',
-        borderTop: `1px solid ${tokens.colorNeutralStroke1}`,
+        backgroundColor: '#181818',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
         zIndex: 200,
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingBottom: 'env(safe-area-inset-bottom)', // iOS safe area
+        paddingBottom: 'env(safe-area-inset-bottom)',
         '@media (max-width: 768px)': {
             display: 'flex',
         },
@@ -26,13 +26,15 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         textDecoration: 'none',
-        color: '#aaaaaa',
+        color: '#777',
         gap: '4px',
         fontSize: '10px',
+        fontWeight: 500,
         width: '100%',
         height: '100%',
+        transition: 'color 0.15s ease',
         ':hover': {
-            color: '#ffffff',
+            color: '#ccc',
         }
     },
     activeItem: {
@@ -46,15 +48,15 @@ const BottomNav = () => {
     return (
         <nav className={styles.bottomNav}>
             <NavLink to="/" className={({ isActive }) => mergeClasses(styles.navItem, isActive && styles.activeItem)}>
-                <Home size={24} />
+                <Home size={22} />
                 <span>Home</span>
             </NavLink>
             <NavLink to="/explore" className={({ isActive }) => mergeClasses(styles.navItem, isActive && styles.activeItem)}>
-                <Compass size={24} />
+                <Compass size={22} />
                 <span>Explore</span>
             </NavLink>
             <NavLink to="/library" className={({ isActive }) => mergeClasses(styles.navItem, isActive && styles.activeItem)}>
-                <Library size={24} />
+                <Library size={22} />
                 <span>Library</span>
             </NavLink>
         </nav>

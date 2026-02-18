@@ -9,21 +9,27 @@ const useStyles = makeStyles({
         display: 'flex',
         height: '100vh',
         width: '100vw',
-        backgroundColor: '#030303', // YTM Black
+        backgroundColor: '#030303',
         color: '#ffffff',
+        position: 'relative',
     },
     mainPanel: {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
+        minWidth: 0, // Prevent flex overflow
     },
     contentArea: {
         flex: 1,
         overflowY: 'auto',
-        padding: `50px 100px`, // Space for player
-        background: 'radial-gradient(circle at 0% 0%, #1c3b42 0%, #030303 60%)',
+        overflowX: 'hidden',
+        paddingTop: '0',
+        paddingRight: '0',
+        paddingBottom: '100px', // Space for fixed player
+        paddingLeft: '0',
+        background: 'linear-gradient(180deg, #1a1a2e 0%, #030303 35%)',
         '@media (max-width: 768px)': {
-            padding: '20px 20px 140px 20px', // More bottom padding for Nav + Player
+            paddingBottom: '160px', // Nav + Player
         },
     }
 });
@@ -39,8 +45,9 @@ const MainLayout = () => {
                 <div className={styles.contentArea}>
                     <Outlet />
                 </div>
-                <Player />
             </div>
+            {/* Player spans full width, fixed at bottom */}
+            <Player />
         </div>
     );
 };

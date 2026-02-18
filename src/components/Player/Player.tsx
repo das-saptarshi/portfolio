@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle } from 'lucide-react';
+import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle } from 'lucide-react';
 import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
 import {
     makeStyles,
@@ -12,19 +12,23 @@ import {
 const useStyles = makeStyles({
     player: {
         height: '80px',
-        width: '100%',
-        backgroundColor: '#212121', // Dark grey background
-        border: 'none',
+        width: '100vw',
+        backgroundColor: '#181818',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: `0 ${tokens.spacingHorizontalL}`, // Reduced padding
+        paddingTop: 0,
+        paddingRight: '16px',
+        paddingBottom: 0,
+        paddingLeft: '16px',
         position: 'fixed',
         bottom: 0,
+        left: 0,
         zIndex: 100,
         '@media (max-width: 768px)': {
-            bottom: '64px', // Above bottom nav
-            padding: `0 ${tokens.spacingHorizontalM}`,
+            bottom: '64px',
+            paddingRight: '12px',
+            paddingLeft: '12px',
         },
     },
     topProgressBar: {
@@ -33,112 +37,156 @@ const useStyles = makeStyles({
         left: 0,
         width: '100%',
         height: '3px',
-        backgroundColor: '#555',
+        backgroundColor: 'rgba(255,255,255,0.15)',
         cursor: 'pointer',
+        transition: 'height 0.15s ease',
         ':hover': {
             height: '5px',
         }
     },
     progressFill: {
         height: '100%',
-        backgroundColor: '#ff0000', // YouTube Red
+        backgroundColor: '#ff0000',
+        transition: 'width 0.3s linear',
     },
+    /* Three-column layout */
     leftControls: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalXL,
-        minWidth: '200px',
+        gap: '16px',
+        width: '280px',
+        flexShrink: 0,
     },
     transportControls: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalL,
+        gap: '12px',
         color: '#fff',
     },
-    playPause: {
-        width: '32px',
-        height: '32px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    controlIcon: {
+        cursor: 'pointer',
+        color: '#ccc',
+        transition: 'color 0.15s ease, transform 0.15s ease',
+        ':hover': {
+            color: '#fff',
+            transform: 'scale(1.1)',
+        },
+    },
+    playPauseBtn: {
         cursor: 'pointer',
         color: '#fff',
+        transition: 'transform 0.15s ease',
+        display: 'flex',
+        alignItems: 'center',
+        ':hover': {
+            transform: 'scale(1.08)',
+        },
+    },
+    timeText: {
+        color: '#888',
+        fontSize: '12px',
+        minWidth: '70px',
+        '@media (max-width: 768px)': {
+            display: 'none',
+        },
     },
     centerTrackInfo: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalL,
+        gap: '14px',
         flex: 1,
         justifyContent: 'center',
+        overflow: 'hidden',
     },
     albumArt: {
-        width: '40px',
-        height: '40px',
+        width: '44px',
+        height: '44px',
         borderRadius: '4px',
         overflow: 'hidden',
         backgroundColor: '#333',
+        flexShrink: 0,
     },
     trackDetails: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        overflow: 'hidden',
     },
     titleText: {
         color: '#fff',
-        fontSize: '1rem',
-        lineHeight: '1.2',
-    },
-    artistRow: {
-        display: 'flex',
-        alignItems: 'center',
+        fontSize: '14px',
+        lineHeight: '1.3',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
     },
     artistText: {
         color: '#aaa',
+        fontSize: '12px',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
     },
     trackActions: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalS,
+        gap: '4px',
+        flexShrink: 0,
+        '@media (max-width: 768px)': {
+            display: 'none',
+        },
     },
     rightControls: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        gap: tokens.spacingHorizontalL,
-        minWidth: '200px',
-        color: '#fff',
+        gap: '16px',
+        width: '280px',
+        flexShrink: 0,
+        color: '#ccc',
+        '@media (max-width: 768px)': {
+            width: 'auto',
+            gap: '8px',
+        },
     },
-    controlsLeft: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: tokens.spacingHorizontalMNudge,
+    rightIcon: {
+        cursor: 'pointer',
+        color: '#888',
+        transition: 'color 0.15s ease',
+        ':hover': {
+            color: '#fff',
+        },
+        '@media (max-width: 768px)': {
+            display: 'none',
+        },
     },
-    controlButtons: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: tokens.spacingHorizontalM,
-    },
-    mobileHidden: {
-        display: 'none',
-        '@media (min-width: 768px)': {
-            display: 'block',
+    expandToggle: {
+        cursor: 'pointer',
+        color: '#888',
+        transition: 'color 0.15s ease, transform 0.3s ease',
+        ':hover': {
+            color: '#fff',
         },
     },
     // Expanded Overlay
     expandedOverlay: {
         position: 'fixed',
         top: 0,
-        left: '240px', // Respect sidebar
+        left: '240px',
         width: 'calc(100vw - 240px)',
         height: 'calc(100vh - 80px)',
-        backgroundColor: tokens.colorNeutralBackground1, // Use standard bg
+        backgroundColor: '#0a0a0a',
         zIndex: 90,
         transform: 'translateY(100%)',
         transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         display: 'flex',
         flexDirection: 'column',
-        padding: tokens.spacingVerticalXXL,
+        padding: '40px',
         overflowY: 'auto',
+        '@media (max-width: 768px)': {
+            left: 0,
+            width: '100vw',
+            padding: '24px',
+        },
     },
     expandedOpen: {
         transform: 'translateY(0)',
@@ -146,32 +194,33 @@ const useStyles = makeStyles({
     expandedHeader: {
         display: 'flex',
         justifyContent: 'flex-end',
-        marginBottom: tokens.spacingVerticalXXL,
+        marginBottom: '40px',
     },
     profileSection: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginBottom: tokens.spacingVerticalXXXL,
+        marginBottom: '48px',
         textAlign: 'center',
     },
     largeAvatar: {
         width: '120px',
         height: '120px',
-        backgroundColor: tokens.colorNeutralBackground3,
+        backgroundColor: '#1a1a1a',
         borderRadius: tokens.borderRadiusCircular,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: tokens.fontSizeHero900,
-        marginBottom: tokens.spacingVerticalL,
-        boxShadow: tokens.shadow16,
+        fontSize: '48px',
+        marginBottom: '20px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
     },
     bio: {
         maxWidth: '600px',
-        color: tokens.colorNeutralForeground2,
-        marginTop: tokens.spacingVerticalM,
-        lineHeight: tokens.lineHeightBase400,
+        color: '#999',
+        marginTop: '12px',
+        lineHeight: '1.6',
+        fontSize: '14px',
     },
     columns: {
         display: 'flex',
@@ -186,39 +235,40 @@ const useStyles = makeStyles({
         minWidth: '300px',
     },
     sectionTitle: {
-        fontSize: tokens.fontSizeBase500,
-        fontWeight: tokens.fontWeightBold,
-        margin: tokens.spacingVerticalL,
-        border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
-        padding: tokens.spacingVerticalS,
-        color: tokens.colorNeutralForeground1,
+        fontSize: '16px',
+        fontWeight: 700,
+        marginBottom: '16px',
+        paddingBottom: '10px',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        color: '#fff',
     },
     timelineList: {
         display: 'flex',
         flexDirection: 'column',
-        gap: tokens.spacingVerticalL,
+        gap: '16px',
     },
     timelineItem: {
         display: 'flex',
-        gap: tokens.spacingHorizontalM,
+        gap: '14px',
     },
     timelineYear: {
-        fontWeight: tokens.fontWeightSemibold,
-        color: tokens.colorNeutralForeground3,
+        fontWeight: 600,
+        color: '#666',
         minWidth: '60px',
+        fontSize: '13px',
     },
     skillCloud: {
         display: 'flex',
         flexWrap: 'wrap',
-        gap: tokens.spacingHorizontalS,
+        gap: '8px',
     },
     skillBadge: {
-        fontSize: tokens.fontSizeBase300,
-        padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalM}`,
-        backgroundColor: tokens.colorNeutralBackgroundAlpha,
-        color: tokens.colorNeutralForeground1,
-        border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke1}`,
-        borderRadius: tokens.borderRadiusMedium,
+        fontSize: '13px',
+        padding: '6px 14px',
+        backgroundColor: 'rgba(255,255,255,0.06)',
+        color: '#ccc',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: '20px',
     }
 });
 
@@ -243,8 +293,8 @@ const Player = () => {
                 <div className={styles.profileSection}>
                     <div className={styles.largeAvatar}>👨‍💻</div>
                     <Text size={900} weight="bold">Saptarshi Das</Text>
-                    <Text size={500} style={{ color: '#aaa', marginTop: '0.5rem' }}>Software Engineer II • Microsoft</Text>
-                    <Text className={styles.bio} style={{ maxWidth: 600, color: '#ccc', marginTop: '1rem' }}>{bio}</Text>
+                    <Text size={500} style={{ color: '#aaa', marginTop: '8px' }}>Software Engineer II • Microsoft</Text>
+                    <Text className={styles.bio}>{bio}</Text>
                 </div>
 
                 <div className={styles.columns}>
@@ -255,8 +305,8 @@ const Player = () => {
                                 <div key={exp.id} className={styles.timelineItem}>
                                     <div className={styles.timelineYear}>{exp.year.split(' ')[0]}</div>
                                     <div>
-                                        <Text weight="bold" block>{exp.title}</Text>
-                                        <Text style={{ color: '#888' }}>{exp.summary}</Text>
+                                        <Text weight="bold" block style={{ fontSize: '14px' }}>{exp.title}</Text>
+                                        <Text style={{ color: '#888', fontSize: '13px' }}>{exp.summary}</Text>
                                     </div>
                                 </div>
                             ))}
@@ -281,7 +331,7 @@ const Player = () => {
             >
                 {/* Top Progress Bar */}
                 <div className={styles.topProgressBar}>
-                    <div className={styles.progressFill} style={{ width: '40%' }}></div>
+                    <div className={styles.progressFill} style={{ width: '40%' }} />
                 </div>
 
                 {/* Left: Controls & Time */}
@@ -289,17 +339,14 @@ const Player = () => {
                     className={styles.leftControls}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    {/* Left: Controls */}
-                    <div className={styles.controlsLeft}>
-                        <div className={styles.controlButtons}>
-                            <SkipBack size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
-                            <div onClick={togglePlay} style={{ cursor: 'pointer' }}>
-                                {isPlaying ? <PauseCircle size={48} fill="white" /> : <PlayCircle size={48} fill="white" />}
-                            </div>
-                            <SkipForward size={28} fill="currentColor" style={{ cursor: 'pointer' }} />
+                    <div className={styles.transportControls}>
+                        <SkipBack size={24} className={styles.controlIcon} fill="currentColor" />
+                        <div onClick={togglePlay} className={styles.playPauseBtn}>
+                            {isPlaying ? <PauseCircle size={40} /> : <PlayCircle size={40} />}
                         </div>
-                        <Text size={200} style={{ color: '#aaa', minWidth: '70px' }} className={styles.mobileHidden}>{currentPlayback.progress} / {currentPlayback.duration}</Text>
+                        <SkipForward size={24} className={styles.controlIcon} fill="currentColor" />
                     </div>
+                    <span className={styles.timeText}>{currentPlayback.progress} / {currentPlayback.duration}</span>
                 </div>
 
                 {/* Center: Track Info */}
@@ -308,19 +355,17 @@ const Player = () => {
                         <img
                             src={currentPlayback.cover}
                             alt="cover"
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: tokens.borderRadiusMedium }}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
                     </div>
                     <div className={styles.trackDetails}>
                         <Text weight="semibold" className={styles.titleText}>{currentPlayback.title}</Text>
-                        <div className={styles.artistRow}>
-                            <Text size={200} className={styles.artistText}>{currentPlayback.artist} • {currentPlayback.album} • {currentPlayback.year}</Text>
-                        </div>
+                        <Text className={styles.artistText}>{currentPlayback.artist} • {currentPlayback.album} • {currentPlayback.year}</Text>
                     </div>
                     <div className={styles.trackActions}>
-                        <Button appearance="transparent" icon={<span style={{ fontSize: '1.2rem' }}>👎</span>} />
-                        <Button appearance="transparent" icon={<span style={{ fontSize: '1.2rem' }}>👍</span>} />
-                        <Button appearance="transparent" icon={<MoreHorizontal size={24} color="#ccc" />} />
+                        <Button appearance="transparent" icon={<span style={{ fontSize: '1rem' }}>👎</span>} />
+                        <Button appearance="transparent" icon={<span style={{ fontSize: '1rem' }}>👍</span>} />
+                        <Button appearance="transparent" icon={<MoreHorizontal size={20} color="#888" />} />
                     </div>
                 </div>
 
@@ -329,11 +374,14 @@ const Player = () => {
                     className={styles.rightControls}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <Volume2 size={24} color="#aaa" />
-                    <Repeat size={24} color="#aaa" />
-                    <Shuffle size={24} color="#aaa" />
-                    <div onClick={() => setIsExpanded(!isExpanded)} style={{ cursor: 'pointer' }}>
-                        <ChevronDown size={28} style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                    <Volume2 size={20} className={styles.rightIcon} />
+                    <Repeat size={20} className={styles.rightIcon} />
+                    <Shuffle size={20} className={styles.rightIcon} />
+                    <div onClick={() => setIsExpanded(!isExpanded)} className={styles.expandToggle}>
+                        {isExpanded
+                            ? <ChevronDown size={24} />
+                            : <ChevronUp size={24} />
+                        }
                     </div>
                 </div>
             </div>

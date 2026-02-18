@@ -7,52 +7,71 @@ import {
 } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
+    container: {
+        paddingTop: '32px',
+        paddingRight: '48px',
+        paddingBottom: '2rem',
+        paddingLeft: '48px',
+        '@media (max-width: 768px)': {
+            paddingTop: '20px',
+            paddingRight: '16px',
+            paddingBottom: '2rem',
+            paddingLeft: '16px',
+        },
+    },
     header: {
         display: 'flex',
         alignItems: 'flex-end',
-        gap: '2rem',
-        paddingTop: '2rem',
-        paddingRight: 0,
+        gap: '28px',
+        paddingTop: '1rem',
         paddingBottom: '2rem',
-        paddingLeft: 0,
+        '@media (max-width: 768px)': {
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+        },
     },
     albumArt: {
-        width: '200px',
-        height: '200px',
+        width: '220px',
+        height: '220px',
+        borderRadius: '4px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+        flexShrink: 0,
     },
     albumInitial: {
         fontSize: '3rem',
         fontWeight: 800,
         color: 'white',
+        textShadow: '0 2px 10px rgba(0,0,0,0.3)',
     },
     albumType: {
-        fontSize: '0.9rem',
+        fontSize: '12px',
         textTransform: 'uppercase',
         fontWeight: 700,
         display: 'block',
+        color: '#aaa',
+        letterSpacing: '1px',
     },
     title: {
-        fontSize: '3rem',
+        fontSize: '2.8rem',
         fontWeight: 900,
-        marginBottom: '0.5rem',
+        marginBottom: '6px',
         display: 'block',
+        lineHeight: 1.1,
     },
     meta: {
-        color: '#ccc',
+        color: '#aaa',
         display: 'block',
+        fontSize: '14px',
     },
     controls: {
         display: 'flex',
         alignItems: 'center',
-        gap: '2rem',
-        paddingTop: '1rem',
-        paddingRight: 0,
-        paddingBottom: '1rem',
-        paddingLeft: 0,
+        gap: '20px',
+        paddingBottom: '8px',
     },
     playButton: {
         width: '56px',
@@ -65,49 +84,72 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         cursor: 'pointer',
         border: 'none',
+        transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        ':hover': {
+            transform: 'scale(1.06)',
+            boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
+        },
+    },
+    actionIcon: {
+        color: '#888',
+        transition: 'color 0.15s ease',
+        ':hover': {
+            color: '#fff',
+        },
     },
     trackList: {
-        marginTop: '2rem',
+        marginTop: '24px',
     },
     trackHeader: {
         display: 'grid',
-        gridTemplateColumns: '50px 1fr 100px',
-        paddingTop: '0.5rem',
-        paddingRight: '1rem',
-        paddingBottom: '0.5rem',
-        paddingLeft: '1rem',
-        borderBottom: '1px solid rgba(255,255,255,0.1)',
-        color: '#aaa',
-        fontSize: '0.9rem',
+        gridTemplateColumns: '50px 1fr 80px',
+        paddingTop: '8px',
+        paddingRight: '16px',
+        paddingBottom: '8px',
+        paddingLeft: '16px',
+        borderBottom: '1px solid rgba(255,255,255,0.08)',
+        color: '#888',
+        fontSize: '12px',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px',
     },
     headerTime: {
         textAlign: 'right',
     },
     trackRow: {
         display: 'grid',
-        gridTemplateColumns: '50px 1fr 100px',
-        paddingTop: '1rem',
-        paddingRight: '1rem',
-        paddingBottom: '1rem',
-        paddingLeft: '1rem',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        gridTemplateColumns: '50px 1fr 80px',
+        paddingTop: '14px',
+        paddingRight: '16px',
+        paddingBottom: '14px',
+        paddingLeft: '16px',
+        borderBottom: '1px solid rgba(255,255,255,0.04)',
         color: '#ccc',
         cursor: 'pointer',
+        borderRadius: '4px',
+        transition: 'all 0.15s ease',
         ':hover': {
-            backgroundColor: 'rgba(255,255,255,0.1)',
+            backgroundColor: 'rgba(255,255,255,0.06)',
             color: 'white',
         }
     },
+    trackIndex: {
+        color: '#666',
+        fontSize: '14px',
+    },
     trackDuration: {
         textAlign: 'right',
-        fontSize: '0.85rem',
+        fontSize: '13px',
+        color: '#888',
     },
     trackTitle: {
         fontWeight: 500,
+        fontSize: '14px',
     }
 });
 
-const experienceData: any = {
+const experienceData: Record<string, { title: string; role: string; year: string; color: string; tracks: { title: string; duration: string }[] }> = {
     microsoft: {
         title: 'Microsoft',
         role: 'Software Engineer II',
@@ -164,14 +206,14 @@ const AlbumDetail = () => {
     const { id } = useParams();
     const data = experienceData[id || 'microsoft'];
 
-    if (!data) return <div>Album not found</div>;
+    if (!data) return <div style={{ padding: '48px', color: '#888' }}>Album not found</div>;
 
     return (
-        <div>
+        <div className={styles.container}>
             {/* Header */}
             <div
                 className={styles.header}
-                style={{ background: `linear-gradient(to bottom, ${data.color}22, transparent)` }}
+                style={{ background: `linear-gradient(to bottom, ${data.color}40, transparent)` }}
             >
                 <div
                     className={styles.albumArt}
@@ -191,8 +233,8 @@ const AlbumDetail = () => {
                 <button className={styles.playButton}>
                     <Play fill="black" size={28} style={{ marginLeft: 4 }} />
                 </button>
-                <Button appearance="transparent" icon={<PlusCircle size={32} color="#ccc" />} />
-                <Button appearance="transparent" icon={<MoreHorizontal size={32} color="#ccc" />} />
+                <Button appearance="transparent" icon={<PlusCircle size={28} color="#888" />} className={styles.actionIcon} />
+                <Button appearance="transparent" icon={<MoreHorizontal size={28} color="#888" />} className={styles.actionIcon} />
             </div>
 
             {/* List */}
@@ -200,14 +242,14 @@ const AlbumDetail = () => {
                 <div className={styles.trackHeader}>
                     <span>#</span>
                     <span>Title</span>
-                    <span className={styles.headerTime}><Clock size={16} /></span>
+                    <span className={styles.headerTime}><Clock size={14} /></span>
                 </div>
-                {data.tracks.map((track: any, index: number) => (
+                {data.tracks.map((track, index) => (
                     <div
                         key={index}
                         className={styles.trackRow}
                     >
-                        <span className="track-index">{index + 1}</span>
+                        <span className={styles.trackIndex}>{index + 1}</span>
                         <Text className={styles.trackTitle}>{track.title}</Text>
                         <span className={styles.trackDuration}>{track.duration}</span>
                     </div>
