@@ -12,7 +12,7 @@ import {
 const useStyles = makeStyles({
     sidebar: {
         width: '240px',
-        height: '100vh',
+        height: 'calc(100vh - 72px)',
         backgroundColor: '#030303',
         display: 'flex',
         flexDirection: 'column',
@@ -26,6 +26,11 @@ const useStyles = makeStyles({
         boxSizing: 'border-box',
         flexShrink: 0,
         zIndex: 50,
+        overflowY: 'auto',
+        scrollbarWidth: 'none',
+        '::-webkit-scrollbar': {
+            display: 'none',
+        },
         '@media (max-width: 768px)': {
             display: 'none',
         },
