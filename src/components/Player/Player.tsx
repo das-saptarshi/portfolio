@@ -309,7 +309,9 @@ const Player = () => {
                                     <div className={styles.timelineYear}>{exp.year.split(' ')[0]}</div>
                                     <div>
                                         <Text weight="bold" block style={{ fontSize: '14px' }}>{exp.title}</Text>
-                                        <Text style={{ color: '#888', fontSize: '13px' }}>{exp.summary}</Text>
+                                        <Text style={{ color: '#888', fontSize: '13px' }}>
+                                            {exp.role.join(', ')}
+                                        </Text>
                                     </div>
                                 </div>
                             ))}

@@ -15,7 +15,7 @@ export const experience = [
     {
         id: 'microsoft',
         title: 'Microsoft',
-        role: 'Software Engineer II',
+        role: ['Software Engineer', 'Software Engineer II'],
         year: '2024 - Present',
         color: '#00a4ef',
         summary: 'Lead Scalability Engineer for Azure Bot Service.',
@@ -29,7 +29,7 @@ export const experience = [
     {
         id: 'samsung',
         title: 'Samsung',
-        role: 'SDE',
+        role: ['Software Development Engineer'],
         year: '2023 - 2024',
         color: '#1428a0',
         summary: 'Created No-Code ML Ops Platform.',
@@ -42,7 +42,7 @@ export const experience = [
     {
         id: 'amazon',
         title: 'Amazon',
-        role: 'SDE',
+        role: ['Software Development Engineer'],
         year: '2022 - 2023',
         color: '#ff9900',
         summary: 'High-Availability Backend for Global Sellers.',
@@ -55,7 +55,7 @@ export const experience = [
     {
         id: 'tcs',
         title: 'TCS',
-        role: 'Systems Engineer',
+        role: ['Systems Engineer'],
         year: '2021 - 2022',
         color: '#5f6db0',
         summary: 'Legacy Modernization to REST.',
@@ -94,10 +94,10 @@ export const homeCategories = [
 
 // Library Page Data
 export const libraryAlbums = [
-    { id: 'microsoft', title: 'Microsoft', role: 'Software Engineer II', coverColor: '#00a4ef', year: '2024' },
-    { id: 'samsung', title: 'Samsung', role: 'SDE', coverColor: '#1428a0', year: '2023' },
-    { id: 'amazon', title: 'Amazon', role: 'SDE', coverColor: '#ff9900', year: '2022' },
-    { id: 'tcs', title: 'Tata Consultancy Services', role: 'Systems Engineer', coverColor: '#5f6db0', year: '2021' },
+    { id: 'microsoft', title: 'Microsoft', role: ['Software Engineer', 'Software Engineer II'], coverColor: '#00a4ef', year: '2024' },
+    { id: 'samsung', title: 'Samsung', role: ['Software Development Engineer'], coverColor: '#1428a0', year: '2023' },
+    { id: 'amazon', title: 'Amazon', role: ['Software Development Engineer'], coverColor: '#ff9900', year: '2022' },
+    { id: 'tcs', title: 'Tata Consultancy Services', role: ['Systems Engineer'], coverColor: '#5f6db0', year: '2021' },
 ];
 
 // Explore Page Data

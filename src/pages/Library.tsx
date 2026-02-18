@@ -119,7 +119,7 @@ const Library = () => {
                             </div>
                         </div>
                         <Text weight="bold" block className={styles.albumTitle}>{album.title}</Text>
-                        <Text size={200} className={styles.albumDetails}>Album • {album.role} • {album.year}</Text>
+                        <Text size={200} className={styles.albumDetails}>Album • {album.role.join(', ')} • {album.year}</Text>
                     </div>
                 ))}
             </div>

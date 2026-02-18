@@ -149,10 +149,10 @@ const useStyles = makeStyles({
     }
 });
 
-const experienceData: Record<string, { title: string; role: string; year: string; color: string; tracks: { title: string; duration: string }[] }> = {
+const experienceData: Record<string, { title: string; role: string[]; year: string; color: string; tracks: { title: string; duration: string }[] }> = {
     microsoft: {
         title: 'Microsoft',
-        role: 'Software Engineer II',
+        role: ['Software Engineer', 'Software Engineer II'],
         year: '2024 - Present',
         color: '#00a4ef',
         tracks: [
@@ -165,7 +165,7 @@ const experienceData: Record<string, { title: string; role: string; year: string
     },
     samsung: {
         title: 'Samsung',
-        role: 'Software Development Engineer',
+        role: ['Software Development Engineer'],
         year: '2023 - 2024',
         color: '#1428a0',
         tracks: [
@@ -178,7 +178,7 @@ const experienceData: Record<string, { title: string; role: string; year: string
     },
     amazon: {
         title: 'Amazon',
-        role: 'SDE',
+        role: ['Software Development Engineer'],
         year: '2022 - 2023',
         color: '#ff9900',
         tracks: [
@@ -190,7 +190,7 @@ const experienceData: Record<string, { title: string; role: string; year: string
     },
     tcs: {
         title: 'Tata Consultancy Services',
-        role: 'Systems Engineer',
+        role: ['Systems Engineer'],
         year: '2021 - 2022',
         color: '#5f6db0',
         tracks: [
@@ -224,7 +224,7 @@ const AlbumDetail = () => {
                 <div>
                     <Text className={styles.albumType}>Album</Text>
                     <Text className={styles.title}>{data.title}</Text>
-                    <Text className={styles.meta}>{data.role} • {data.year} • {data.tracks.length} songs</Text>
+                    <Text className={styles.meta}>{data.role.join(', ')} • {data.year} • {data.tracks.length} songs</Text>
                 </div>
             </div>
 
