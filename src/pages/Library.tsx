@@ -111,7 +111,11 @@ const Library = () => {
                             className={styles.coverArt}
                             style={{ background: `linear-gradient(45deg, ${album.coverColor}, #111)` }}
                         >
-                            <Text className={styles.companyName}>{album.title}</Text>
+                            <img
+                                src={`${import.meta.env.BASE_URL}${album.thumbnail}`}
+                                alt={album.title}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+                            />
 
                             {/* Overlay */}
                             <div className={styles.hoverOverlay}>

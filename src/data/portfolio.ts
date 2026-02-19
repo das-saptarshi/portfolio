@@ -94,10 +94,10 @@ export const homeCategories = [
 
 // Library Page Data
 export const libraryAlbums = [
-    { id: 'microsoft', title: 'Microsoft', role: ['Software Engineer', 'Software Engineer II'], coverColor: '#00a4ef', year: '2024' },
-    { id: 'samsung', title: 'Samsung', role: ['Software Development Engineer'], coverColor: '#1428a0', year: '2023' },
-    { id: 'amazon', title: 'Amazon', role: ['Software Development Engineer'], coverColor: '#ff9900', year: '2022' },
-    { id: 'tcs', title: 'Tata Consultancy Services', role: ['Systems Engineer'], coverColor: '#5f6db0', year: '2021' },
+    { id: 'microsoft', title: 'Microsoft', role: ['Software Engineer', 'Software Engineer II'], coverColor: '#00a4ef', year: '2024', thumbnail: 'logos/microsoft_logo.jpeg' },
+    { id: 'samsung', title: 'Samsung', role: ['Software Development Engineer'], coverColor: '#1428a0', year: '2023', thumbnail: 'logos/samsung_electro_mechanics__logo.jpeg' },
+    { id: 'amazon', title: 'Amazon', role: ['Software Development Engineer'], coverColor: '#ff9900', year: '2022', thumbnail: 'logos/amazon_logo.jpeg' },
+    { id: 'tcs', title: 'Tata Consultancy Services', role: ['Systems Engineer'], coverColor: '#5f6db0', year: '2021', thumbnail: 'logos/tata_consultancy_services_logo.jpeg' },
 ];
 
 // Explore Page Data
