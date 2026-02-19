@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { Play } from 'lucide-react';
 import {
     makeStyles,
     Text
@@ -63,9 +62,6 @@ const useStyles = makeStyles({
         right: 0,
         bottom: 0,
         backgroundColor: 'rgba(0,0,0,0.4)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         zIndex: 20,
         opacity: 0,
         transition: 'opacity 0.2s ease',
@@ -117,10 +113,9 @@ const Library = () => {
                                 style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
                             />
 
-                            {/* Overlay */}
-                            <div className={styles.hoverOverlay}>
-                                <Play fill="white" size={48} />
-                            </div>
+                            {/* Tinted overlay on hover */}
+                            <div className={styles.hoverOverlay} />
+
                         </div>
                         <Text weight="bold" block className={styles.albumTitle}>{album.title}</Text>
                         <Text size={200} className={styles.albumDetails}>Album • {album.role.join(', ')} • {album.year}</Text>
