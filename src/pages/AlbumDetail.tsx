@@ -5,6 +5,7 @@ import {
     Text,
     Button
 } from '@fluentui/react-components';
+import { libraryAlbums } from '../data/portfolio';
 
 const useStyles = makeStyles({
     container: {
@@ -35,17 +36,15 @@ const useStyles = makeStyles({
         width: '220px',
         height: '220px',
         borderRadius: '4px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
         flexShrink: 0,
+        overflow: 'hidden',
+        position: 'relative',
     },
-    albumInitial: {
-        fontSize: '3rem',
-        fontWeight: 800,
-        color: 'white',
-        textShadow: '0 2px 10px rgba(0,0,0,0.3)',
+    albumArtImage: {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
     },
     albumType: {
         fontSize: '12px',
@@ -205,6 +204,7 @@ const AlbumDetail = () => {
     const styles = useStyles();
     const { id } = useParams();
     const data = experienceData[id || 'microsoft'];
+    const albumData = libraryAlbums.find(a => a.id === (id || 'microsoft'));
 
     if (!data) return <div style={{ padding: '48px', color: '#888' }}>Album not found</div>;
 
@@ -219,7 +219,13 @@ const AlbumDetail = () => {
                     className={styles.albumArt}
                     style={{ background: `linear-gradient(135deg, ${data.color}, #000)` }}
                 >
-                    <Text className={styles.albumInitial}>{data.title[0]}</Text>
+                    {albumData?.thumbnail && (
+                        <img
+                            src={`${import.meta.env.BASE_URL}${albumData.thumbnail}`}
+                            alt={data.title}
+                            className={styles.albumArtImage}
+                        />
+                    )}
                 </div>
                 <div>
                     <Text className={styles.albumType}>Album</Text>
