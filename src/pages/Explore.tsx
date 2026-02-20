@@ -1,30 +1,13 @@
 import { Play } from 'lucide-react';
-import {
-    makeStyles,
-    Text,
-} from '@fluentui/react-components';
+import { makeStyles, Text } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     container: {
-        paddingTop: '32px',
-        paddingRight: '48px',
-        paddingBottom: '2rem',
-        paddingLeft: '48px',
-        '@media (max-width: 768px)': {
-            paddingTop: '20px',
-            paddingRight: '16px',
-            paddingBottom: '2rem',
-            paddingLeft: '16px',
-        },
+        padding: '32px 48px 2rem',
+        '@media (max-width: 768px)': { padding: '20px 16px 2rem' },
     },
-    header: {
-        marginBottom: '28px',
-    },
-    categoryTitle: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem',
-    },
+    header: { marginBottom: '28px' },
+    categoryTitle: { display: 'flex', alignItems: 'center', gap: '1rem' },
     grid: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
@@ -33,9 +16,7 @@ const useStyles = makeStyles({
     videoCard: {
         cursor: 'pointer',
         transition: 'transform 0.15s ease',
-        ':hover': {
-            transform: 'translateY(-2px)',
-        }
+        ':hover': { transform: 'translateY(-2px)' },
     },
     thumbnail: {
         width: '100%',
@@ -46,16 +27,10 @@ const useStyles = makeStyles({
         position: 'relative',
         overflow: 'hidden',
     },
-    thumbnailBg: {
-        width: '100%',
-        height: '100%',
-    },
+    thumbnailBg: { width: '100%', height: '100%' },
     hoverOverlay: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        inset: 0,
         backgroundColor: 'rgba(0,0,0,0.45)',
         display: 'flex',
         alignItems: 'center',
@@ -65,15 +40,10 @@ const useStyles = makeStyles({
     },
     videoCardHover: {
         ':hover': {
-            '& > div:first-child > div:last-child': {
-                opacity: 1,
-            }
-        }
+            '& > div:first-child > div:last-child': { opacity: 1 },
+        },
     },
-    details: {
-        display: 'flex',
-        gap: '12px',
-    },
+    details: { display: 'flex', gap: '12px' },
     avatar: {
         width: '36px',
         height: '36px',
@@ -85,15 +55,8 @@ const useStyles = makeStyles({
         fontSize: '1rem',
         flexShrink: 0,
     },
-    textInfo: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2px',
-    },
-    meta: {
-        color: '#aaa',
-        fontSize: '12px',
-    }
+    textInfo: { display: 'flex', flexDirection: 'column', gap: '2px' },
+    meta: { color: '#aaa', fontSize: '12px' },
 });
 
 import { exploreProjects } from '../data/portfolio';

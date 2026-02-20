@@ -1,37 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import {
-    makeStyles,
-    Text
-} from '@fluentui/react-components';
+import { makeStyles, Text } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     container: {
-        paddingTop: '32px',
-        paddingRight: '48px',
-        paddingBottom: '2rem',
-        paddingLeft: '48px',
-        '@media (max-width: 768px)': {
-            paddingTop: '20px',
-            paddingRight: '16px',
-            paddingBottom: '2rem',
-            paddingLeft: '16px',
-        },
+        padding: '32px 48px 2rem',
+        '@media (max-width: 768px)': { padding: '20px 16px 2rem' },
     },
-    title: {
-        marginBottom: '28px',
-    },
-    grid: {
-        display: 'flex',
-        gap: '24px',
-        flexWrap: 'wrap',
-    },
+    title: { marginBottom: '28px' },
+    grid: { display: 'flex', gap: '24px', flexWrap: 'wrap' },
     albumCard: {
         width: '200px',
         cursor: 'pointer',
         transition: 'transform 0.15s ease',
-        ':hover': {
-            transform: 'translateY(-2px)',
-        }
+        ':hover': { transform: 'translateY(-2px)' },
     },
     coverArt: {
         width: '200px',
@@ -46,21 +27,9 @@ const useStyles = makeStyles({
         position: 'relative',
         overflow: 'hidden',
     },
-    companyName: {
-        fontSize: '1.4rem',
-        fontWeight: 800,
-        textAlign: 'center',
-        color: 'white',
-        padding: '1rem',
-        zIndex: 10,
-        textShadow: '0 2px 8px rgba(0,0,0,0.4)',
-    },
     hoverOverlay: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        inset: 0,
         backgroundColor: 'rgba(0,0,0,0.4)',
         zIndex: 20,
         opacity: 0,
@@ -68,20 +37,11 @@ const useStyles = makeStyles({
     },
     albumCardHover: {
         ':hover': {
-            '& > div:first-child > div:last-child': {
-                opacity: 1,
-            }
-        }
+            '& > div:first-child > div:last-child': { opacity: 1 },
+        },
     },
-    albumTitle: {
-        display: 'block',
-        marginTop: '4px',
-        fontSize: '14px',
-    },
-    albumDetails: {
-        color: '#aaa',
-        fontSize: '12px',
-    }
+    albumTitle: { display: 'block', marginTop: '4px', fontSize: '14px' },
+    albumDetails: { color: '#aaa', fontSize: '12px' },
 });
 
 import { libraryAlbums } from '../data/portfolio';
@@ -89,7 +49,6 @@ import { libraryAlbums } from '../data/portfolio';
 const Library = () => {
     const styles = useStyles();
     const navigate = useNavigate();
-
     const albums = libraryAlbums;
 
     return (

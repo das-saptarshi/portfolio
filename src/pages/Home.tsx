@@ -1,26 +1,12 @@
 import { useState } from 'react';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import {
-    makeStyles,
-    Button,
-    Text,
-    mergeClasses,
-} from '@fluentui/react-components';
+import { makeStyles, Button, Text, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     container: {
-        paddingTop: '24px',
-        paddingRight: '48px',
-        paddingBottom: '2rem',
-        paddingLeft: '48px',
-        '@media (max-width: 768px)': {
-            paddingTop: '16px',
-            paddingRight: '16px',
-            paddingBottom: '2rem',
-            paddingLeft: '16px',
-        },
+        padding: '24px 48px 2rem',
+        '@media (max-width: 768px)': { padding: '16px 16px 2rem' },
     },
-    /* ── Header bar ── */
     headerBar: {
         display: 'flex',
         alignItems: 'center',
@@ -39,9 +25,7 @@ const useStyles = makeStyles({
         gap: '10px',
         border: '1px solid rgba(255,255,255,0.06)',
         transition: 'all 0.2s ease',
-        ':hover': {
-            backgroundColor: 'rgba(255,255,255,0.12)',
-        },
+        ':hover': { backgroundColor: 'rgba(255,255,255,0.12)' },
         ':focus-within': {
             backgroundColor: 'rgba(255,255,255,0.14)',
             border: '1px solid rgba(255,255,255,0.2)',
@@ -54,19 +38,10 @@ const useStyles = makeStyles({
         width: '100%',
         fontSize: '14px',
         fontFamily: 'inherit',
-        ':focus': {
-            outline: 'none',
-        },
-        '::placeholder': {
-            color: '#888',
-        }
+        ':focus': { outline: 'none' },
+        '::placeholder': { color: '#888' },
     },
-    profileActions: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        flexShrink: 0,
-    },
+    profileActions: { display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 },
     profileAvatar: {
         width: '32px',
         height: '32px',
@@ -83,7 +58,6 @@ const useStyles = makeStyles({
             border: '1px solid rgba(255,255,255,0.3)',
         },
     },
-    /* ── Category chips ── */
     chipRow: {
         display: 'flex',
         gap: '10px',
@@ -91,9 +65,7 @@ const useStyles = makeStyles({
         paddingBottom: '8px',
         marginBottom: '28px',
         scrollbarWidth: 'none',
-        '::-webkit-scrollbar': {
-            display: 'none',
-        },
+        '::-webkit-scrollbar': { display: 'none' },
     },
     chip: {
         padding: '8px 16px',
@@ -108,53 +80,24 @@ const useStyles = makeStyles({
         transition: 'all 0.15s ease',
         flexShrink: 0,
         fontFamily: 'inherit',
-        ':hover': {
-            backgroundColor: 'rgba(255,255,255,0.15)',
-            color: '#fff',
-        },
+        ':hover': { backgroundColor: 'rgba(255,255,255,0.15)', color: '#fff' },
     },
     chipActive: {
         backgroundColor: '#fff',
         color: '#000',
-        ':hover': {
-            backgroundColor: '#e8e8e8',
-            color: '#000',
-        },
+        ':hover': { backgroundColor: '#e8e8e8', color: '#000' },
     },
-    /* ── Profile section ── */
-    profileSection: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '16px',
-        marginBottom: '36px',
-    },
-    profileImg: {
-        width: '36px',
-        height: '36px',
-        borderRadius: '50%',
-        overflow: 'hidden',
-        flexShrink: 0,
-    },
-    /* ── Sections ── */
-    section: {
-        marginBottom: '40px',
-    },
+    profileSection: { display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '36px' },
+    profileImg: { width: '36px', height: '36px', borderRadius: '50%', overflow: 'hidden', flexShrink: 0 },
+    section: { marginBottom: '40px' },
     sectionHeader: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: '16px',
     },
-    sectionLeft: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2px',
-    },
-    sectionRight: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-    },
+    sectionLeft: { display: 'flex', flexDirection: 'column', gap: '2px' },
+    sectionRight: { display: 'flex', alignItems: 'center', gap: '8px' },
     carouselArrow: {
         width: '36px',
         height: '36px',
@@ -167,10 +110,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         cursor: 'pointer',
         transition: 'all 0.15s ease',
-        ':hover': {
-            backgroundColor: 'rgba(255,255,255,0.18)',
-            color: '#fff',
-        },
+        ':hover': { backgroundColor: 'rgba(255,255,255,0.18)', color: '#fff' },
     },
     moreButton: {
         color: '#aaa',
@@ -181,10 +121,7 @@ const useStyles = makeStyles({
         fontSize: '12px',
         fontWeight: 500,
         transition: 'all 0.15s ease',
-        ':hover': {
-            border: '1px solid rgba(255,255,255,0.4)',
-            color: '#fff',
-        }
+        ':hover': { border: '1px solid rgba(255,255,255,0.4)', color: '#fff' },
     },
     subtitle: {
         color: '#888',
@@ -193,23 +130,15 @@ const useStyles = makeStyles({
         fontSize: '11px',
         letterSpacing: '1px',
     },
-    /* ── Card carousel ── */
     scrollContainer: {
         display: 'flex',
         gap: '20px',
         overflowX: 'auto',
         paddingBottom: '8px',
         scrollbarWidth: 'none',
-        '::-webkit-scrollbar': {
-            display: 'none',
-        },
+        '::-webkit-scrollbar': { display: 'none' },
     },
-    mixCard: {
-        minWidth: '200px',
-        maxWidth: '200px',
-        cursor: 'pointer',
-        flexShrink: 0,
-    },
+    mixCard: { minWidth: '200px', maxWidth: '200px', cursor: 'pointer', flexShrink: 0 },
     cardArt: {
         width: '200px',
         height: '200px',
@@ -229,28 +158,18 @@ const useStyles = makeStyles({
     },
     hoverOverlay: {
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        inset: 0,
         backgroundColor: 'rgba(0,0,0,0.4)',
         opacity: 0,
         transition: 'opacity 0.2s ease',
     },
     cardArtHovered: {
         ':hover': {
-            '& > div:last-child': {
-                opacity: 1,
-            }
-        }
+            '& > div:last-child': { opacity: 1 },
+        },
     },
-    cardLabel: {
-        marginTop: '4px',
-    },
-    cardDesc: {
-        color: '#aaa',
-        fontSize: '12px',
-    },
+    cardLabel: { marginTop: '4px' },
+    cardDesc: { color: '#aaa', fontSize: '12px' },
 });
 
 import { homeCategories } from '../data/portfolio';
@@ -260,7 +179,6 @@ const chipLabels = ['All', 'Backend', 'Cloud', 'DevOps', 'Frontend', 'System Des
 const Home = () => {
     const styles = useStyles();
     const [activeChip, setActiveChip] = useState(0);
-
     const skillCategories = homeCategories;
 
     return (

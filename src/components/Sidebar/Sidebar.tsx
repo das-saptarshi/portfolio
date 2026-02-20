@@ -1,13 +1,7 @@
 import { Home, Library, Compass, Menu } from 'lucide-react';
 import { playlists } from '../../data/portfolio';
 import { NavLink } from 'react-router-dom';
-import {
-    makeStyles,
-    tokens,
-    Button,
-    Text,
-    mergeClasses,
-} from '@fluentui/react-components';
+import { makeStyles, tokens, Button, Text, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     sidebar: {
@@ -16,48 +10,29 @@ const useStyles = makeStyles({
         backgroundColor: '#030303',
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: tokens.spacingVerticalS,
-        paddingRight: tokens.spacingHorizontalS,
-        paddingBottom: tokens.spacingVerticalS,
-        paddingLeft: tokens.spacingHorizontalS,
-        borderRightWidth: tokens.strokeWidthThin,
-        borderRightStyle: 'solid',
-        borderRightColor: 'rgba(255,255,255,0.07)',
+        padding: `${tokens.spacingVerticalS} ${tokens.spacingHorizontalS}`,
+        borderRight: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.07)`,
         boxSizing: 'border-box',
         flexShrink: 0,
         zIndex: 50,
         overflowY: 'auto',
         scrollbarWidth: 'none',
-        '::-webkit-scrollbar': {
-            display: 'none',
-        },
-        '@media (max-width: 768px)': {
-            display: 'none',
-        },
+        '::-webkit-scrollbar': { display: 'none' },
+        '@media (max-width: 768px)': { display: 'none' },
     },
     topRow: {
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalM,
-        paddingTop: tokens.spacingVerticalM,
-        paddingRight: tokens.spacingHorizontalS,
-        paddingBottom: tokens.spacingVerticalXXL,
-        paddingLeft: tokens.spacingHorizontalS,
+        padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalS} ${tokens.spacingVerticalXXL}`,
     },
     hamburger: {
         color: '#aaa',
         minWidth: 'auto',
         padding: '8px',
-        ':hover': {
-            color: '#fff',
-            backgroundColor: 'rgba(255,255,255,0.1)',
-        },
+        ':hover': { color: '#fff', backgroundColor: 'rgba(255,255,255,0.1)' },
     },
-    brand: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: tokens.spacingHorizontalS,
-    },
+    brand: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalS },
     logo: {
         width: '28px',
         height: '28px',
@@ -68,25 +43,15 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         flexShrink: 0,
     },
-    nav: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacingVerticalXXS,
-    },
+    nav: { display: 'flex', flexDirection: 'column', gap: tokens.spacingVerticalXXS },
     navItem: {
         justifyContent: 'flex-start',
         width: '100%',
         color: '#aaaaaa',
-        paddingTop: tokens.spacingVerticalSNudge,
-        paddingRight: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingVerticalSNudge,
-        paddingLeft: tokens.spacingHorizontalM,
+        padding: `${tokens.spacingVerticalSNudge} ${tokens.spacingHorizontalM}`,
         borderRadius: '10px',
         transition: 'all 0.15s ease',
-        ':hover': {
-            color: '#ffffff',
-            backgroundColor: 'rgba(255,255,255,0.1)',
-        },
+        ':hover': { color: '#ffffff', backgroundColor: 'rgba(255,255,255,0.1)' },
     },
     navItemActive: {
         color: '#ffffff',
@@ -95,13 +60,8 @@ const useStyles = makeStyles({
     },
     playlistSection: {
         marginTop: 'auto',
-        paddingTop: tokens.spacingVerticalL,
-        paddingRight: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingVerticalM,
-        paddingLeft: tokens.spacingHorizontalM,
-        borderTopWidth: tokens.strokeWidthThin,
-        borderTopStyle: 'solid',
-        borderTopColor: 'rgba(255,255,255,0.07)',
+        padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalM} ${tokens.spacingVerticalM}`,
+        borderTop: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.07)`,
     },
     playlistHeader: {
         fontSize: '11px',
@@ -112,20 +72,14 @@ const useStyles = makeStyles({
         letterSpacing: '1.2px',
         fontWeight: tokens.fontWeightBold,
     },
-    playlistList: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacingVerticalS,
-    },
+    playlistList: { display: 'flex', flexDirection: 'column', gap: tokens.spacingVerticalS },
     playlistItem: {
         cursor: 'pointer',
         color: '#aaa',
         fontSize: '13px',
         transition: 'color 0.15s ease',
-        ':hover': {
-            color: '#fff',
-        }
-    }
+        ':hover': { color: '#fff' },
+    },
 });
 
 const Sidebar = () => {

@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle, ThumbsUp } from 'lucide-react';
 import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
-import {
-    makeStyles,
-    tokens,
-    Button,
-    Text,
-    mergeClasses
-} from '@fluentui/react-components';
+import { makeStyles, tokens, Button, Text, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     player: {
@@ -17,19 +11,12 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: 0,
-        paddingRight: '16px',
-        paddingBottom: 0,
-        paddingLeft: '16px',
+        padding: '0 16px',
         position: 'fixed',
         bottom: 0,
         left: 0,
         zIndex: 100,
-        '@media (max-width: 768px)': {
-            bottom: '64px',
-            paddingRight: '12px',
-            paddingLeft: '12px',
-        },
+        '@media (max-width: 768px)': { bottom: '64px', padding: '0 12px' },
     },
     topProgressBar: {
         position: 'absolute',
@@ -40,37 +27,16 @@ const useStyles = makeStyles({
         backgroundColor: 'rgba(255,255,255,0.15)',
         cursor: 'pointer',
         transition: 'height 0.15s ease',
-        ':hover': {
-            height: '5px',
-        }
+        ':hover': { height: '5px' },
     },
-    progressFill: {
-        height: '100%',
-        backgroundColor: '#ff0000',
-        transition: 'width 0.3s linear',
-    },
-    /* Three-column layout */
-    leftControls: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '16px',
-        width: '280px',
-        flexShrink: 0,
-    },
-    transportControls: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        color: '#fff',
-    },
+    progressFill: { height: '100%', backgroundColor: '#ff0000', transition: 'width 0.3s linear' },
+    leftControls: { display: 'flex', alignItems: 'center', gap: '16px', width: '280px', flexShrink: 0 },
+    transportControls: { display: 'flex', alignItems: 'center', gap: '12px', color: '#fff' },
     controlIcon: {
         cursor: 'pointer',
         color: '#ccc',
         transition: 'color 0.15s ease, transform 0.15s ease',
-        ':hover': {
-            color: '#fff',
-            transform: 'scale(1.1)',
-        },
+        ':hover': { color: '#fff', transform: 'scale(1.1)' },
     },
     playPauseBtn: {
         cursor: 'pointer',
@@ -78,17 +44,13 @@ const useStyles = makeStyles({
         transition: 'transform 0.15s ease',
         display: 'flex',
         alignItems: 'center',
-        ':hover': {
-            transform: 'scale(1.08)',
-        },
+        ':hover': { transform: 'scale(1.08)' },
     },
     timeText: {
         color: '#888',
         fontSize: '12px',
         minWidth: '70px',
-        '@media (max-width: 768px)': {
-            display: 'none',
-        },
+        '@media (max-width: 768px)': { display: 'none' },
     },
     centerTrackInfo: {
         display: 'flex',
@@ -106,11 +68,7 @@ const useStyles = makeStyles({
         backgroundColor: '#333',
         flexShrink: 0,
     },
-    trackDetails: {
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-    },
+    trackDetails: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
     titleText: {
         color: '#fff',
         fontSize: '14px',
@@ -131,9 +89,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         gap: '4px',
         flexShrink: 0,
-        '@media (max-width: 768px)': {
-            display: 'none',
-        },
+        '@media (max-width: 768px)': { display: 'none' },
     },
     rightControls: {
         display: 'flex',
@@ -143,31 +99,21 @@ const useStyles = makeStyles({
         width: '280px',
         flexShrink: 0,
         color: '#ccc',
-        '@media (max-width: 768px)': {
-            width: 'auto',
-            gap: '8px',
-        },
+        '@media (max-width: 768px)': { width: 'auto', gap: '8px' },
     },
     rightIcon: {
         cursor: 'pointer',
         color: '#888',
         transition: 'color 0.15s ease',
-        ':hover': {
-            color: '#fff',
-        },
-        '@media (max-width: 768px)': {
-            display: 'none',
-        },
+        ':hover': { color: '#fff' },
+        '@media (max-width: 768px)': { display: 'none' },
     },
     expandToggle: {
         cursor: 'pointer',
         color: '#888',
         transition: 'color 0.15s ease, transform 0.3s ease',
-        ':hover': {
-            color: '#fff',
-        },
+        ':hover': { color: '#fff' },
     },
-    // Expanded Overlay
     expandedOverlay: {
         position: 'fixed',
         top: 0,
@@ -182,20 +128,10 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         padding: '40px',
         overflowY: 'auto',
-        '@media (max-width: 768px)': {
-            left: 0,
-            width: '100vw',
-            padding: '24px',
-        },
+        '@media (max-width: 768px)': { left: 0, width: '100vw', padding: '24px' },
     },
-    expandedOpen: {
-        transform: 'translateY(0)',
-    },
-    expandedHeader: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginBottom: '40px',
-    },
+    expandedOpen: { transform: 'translateY(0)' },
+    expandedHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '40px' },
     profileSection: {
         display: 'flex',
         flexDirection: 'column',
@@ -223,18 +159,8 @@ const useStyles = makeStyles({
         fontSize: '14px',
         textAlign: 'center',
     },
-    columns: {
-        display: 'flex',
-        gap: '4rem',
-        maxWidth: '1000px',
-        margin: '0 auto',
-        width: '100%',
-        flexWrap: 'wrap',
-    },
-    column: {
-        flex: 1,
-        minWidth: '300px',
-    },
+    columns: { display: 'flex', gap: '4rem', maxWidth: '1000px', margin: '0 auto', width: '100%', flexWrap: 'wrap' },
+    column: { flex: 1, minWidth: '300px' },
     sectionTitle: {
         fontSize: '16px',
         fontWeight: 700,
@@ -243,26 +169,10 @@ const useStyles = makeStyles({
         borderBottom: '1px solid rgba(255,255,255,0.08)',
         color: '#fff',
     },
-    timelineList: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-    },
-    timelineItem: {
-        display: 'flex',
-        gap: '14px',
-    },
-    timelineYear: {
-        fontWeight: 600,
-        color: '#666',
-        minWidth: '60px',
-        fontSize: '13px',
-    },
-    skillCloud: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '8px',
-    },
+    timelineList: { display: 'flex', flexDirection: 'column', gap: '16px' },
+    timelineItem: { display: 'flex', gap: '14px' },
+    timelineYear: { fontWeight: 600, color: '#666', minWidth: '60px', fontSize: '13px' },
+    skillCloud: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
     skillBadge: {
         fontSize: '13px',
         padding: '6px 14px',
@@ -270,7 +180,7 @@ const useStyles = makeStyles({
         color: '#ccc',
         border: '1px solid rgba(255,255,255,0.08)',
         borderRadius: '20px',
-    }
+    },
 });
 
 const Player = () => {

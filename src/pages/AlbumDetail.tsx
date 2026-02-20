@@ -10,23 +10,14 @@ import { libraryAlbums, experienceData } from '../data/portfolio';
 
 const useStyles = makeStyles({
     container: {
-        paddingTop: '32px',
-        paddingRight: '48px',
-        paddingBottom: '2rem',
-        paddingLeft: '48px',
-        '@media (max-width: 768px)': {
-            paddingTop: '20px',
-            paddingRight: '16px',
-            paddingBottom: '2rem',
-            paddingLeft: '16px',
-        },
+        padding: '32px 48px 2rem',
+        '@media (max-width: 768px)': { padding: '20px 16px 2rem' },
     },
     header: {
         display: 'flex',
         alignItems: 'flex-end',
         gap: '28px',
-        paddingTop: '1rem',
-        paddingBottom: '2rem',
+        padding: '1rem 0 2rem',
         '@media (max-width: 768px)': {
             flexDirection: 'column',
             alignItems: 'center',
@@ -42,11 +33,7 @@ const useStyles = makeStyles({
         overflow: 'hidden',
         position: 'relative',
     },
-    albumArtImage: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-    },
+    albumArtImage: { width: '100%', height: '100%', objectFit: 'cover' },
     albumType: {
         fontSize: '12px',
         textTransform: 'uppercase',
@@ -62,11 +49,7 @@ const useStyles = makeStyles({
         display: 'block',
         lineHeight: 1.1,
     },
-    meta: {
-        color: '#aaa',
-        display: 'block',
-        fontSize: '14px',
-    },
+    meta: { color: '#aaa', display: 'block', fontSize: '14px' },
     controls: {
         display: 'flex',
         alignItems: 'center',
@@ -86,76 +69,45 @@ const useStyles = makeStyles({
         border: 'none',
         transition: 'transform 0.15s ease, box-shadow 0.15s ease',
         boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-        ':hover': {
-            transform: 'scale(1.06)',
-            boxShadow: '0 6px 20px rgba(0,0,0,0.4)',
-        },
+        ':hover': { transform: 'scale(1.06)', boxShadow: '0 6px 20px rgba(0,0,0,0.4)' },
     },
     actionIcon: {
         color: '#888',
         transition: 'color 0.15s ease',
-        ':hover': {
-            color: '#fff',
-        },
+        ':hover': { color: '#fff' },
     },
-    trackList: {
-        marginTop: '24px',
-    },
+    trackList: { marginTop: '24px' },
     trackHeader: {
         display: 'grid',
         gridTemplateColumns: '50px 1fr 80px',
-        paddingTop: '8px',
-        paddingRight: '16px',
-        paddingBottom: '8px',
-        paddingLeft: '16px',
+        padding: '8px 16px',
         borderBottom: '1px solid rgba(255,255,255,0.08)',
         color: '#888',
         fontSize: '12px',
         textTransform: 'uppercase',
         letterSpacing: '0.5px',
     },
-    headerTime: {
-        textAlign: 'right',
-    },
+    headerTime: { textAlign: 'right' },
     trackItem: {
         borderBottom: '1px solid rgba(255,255,255,0.04)',
         borderRadius: '4px',
         transition: 'background-color 0.15s ease',
-        ':hover': {
-            backgroundColor: 'rgba(255,255,255,0.06)',
-        }
+        ':hover': { backgroundColor: 'rgba(255,255,255,0.06)' },
     },
-    trackItemExpanded: {
-        backgroundColor: 'rgba(255,255,255,0.04)',
-    },
+    trackItemExpanded: { backgroundColor: 'rgba(255,255,255,0.04)' },
     trackRow: {
         display: 'grid',
         gridTemplateColumns: '50px 1fr 40px 40px',
-        paddingTop: '14px',
-        paddingRight: '16px',
-        paddingBottom: '14px',
-        paddingLeft: '16px',
+        padding: '14px 16px',
         color: '#ccc',
         cursor: 'pointer',
         alignItems: 'center',
         transition: 'color 0.15s ease',
-        ':hover': {
-            color: 'white',
-        }
+        ':hover': { color: 'white' },
     },
-    trackIndex: {
-        color: '#666',
-        fontSize: '14px',
-    },
-    trackDuration: {
-        textAlign: 'right',
-        fontSize: '13px',
-        color: '#888',
-    },
-    trackTitle: {
-        fontWeight: 500,
-        fontSize: '14px',
-    },
+    trackIndex: { color: '#666', fontSize: '14px' },
+    trackDuration: { textAlign: 'right', fontSize: '13px', color: '#888' },
+    trackTitle: { fontWeight: 500, fontSize: '14px' },
     trackChevron: {
         display: 'flex',
         alignItems: 'center',
@@ -163,32 +115,20 @@ const useStyles = makeStyles({
         color: '#888',
         transition: 'transform 0.25s ease',
     },
-    trackChevronExpanded: {
-        transform: 'rotate(180deg)',
-    },
+    trackChevronExpanded: { transform: 'rotate(180deg)' },
     trackDescription: {
         overflow: 'hidden',
         transition: 'max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease',
         maxHeight: '0px',
         opacity: 0,
-        paddingTop: '0px',
-        paddingRight: '16px',
-        paddingBottom: '0px',
-        paddingLeft: '66px',
+        padding: '0 16px 0 66px',
     },
     trackDescriptionExpanded: {
         maxHeight: '200px',
         opacity: 1,
-        paddingTop: '0px',
-        paddingRight: '16px',
-        paddingBottom: '14px',
-        paddingLeft: '66px',
+        padding: '0 16px 14px 66px',
     },
-    descriptionText: {
-        color: '#aaa',
-        fontSize: '13px',
-        lineHeight: '1.6',
-    },
+    descriptionText: { color: '#aaa', fontSize: '13px', lineHeight: '1.6' },
 });
 
 const AlbumDetail = () => {
