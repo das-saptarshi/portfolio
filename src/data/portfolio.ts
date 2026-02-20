@@ -157,3 +157,70 @@ export const playlists = [
     { name: 'GeeksForGeeks', link: 'https://auth.geeksforgeeks.org/user/das_saptarshi/' },
     { name: 'Github', link: 'https://github.com/das-saptarshi/' }
 ];
+
+// Album Detail Page Data
+export interface Track {
+    title: string;
+    duration: string;
+    description: string;
+}
+
+export interface ExperienceDetail {
+    title: string;
+    role: string[];
+    year: string;
+    color: string;
+    tracks: Track[];
+}
+
+export const experienceData: Record<string, ExperienceDetail> = {
+    microsoft: {
+        title: 'Microsoft',
+        role: ['Software Engineer', 'Software Engineer II'],
+        year: '2024 - Present',
+        color: '#00a4ef',
+        tracks: [
+            { title: 'Led Scalability & Reliability Squad', duration: 'Lead', description: 'Spearheaded a cross-functional squad focused on improving system scalability and reliability across notification infrastructure, driving architecture reviews and incident response improvements.' },
+            { title: 'Eliminated Weekend SLA Breaches', duration: 'Sev-2', description: 'Identified and resolved root causes of recurring Sev-2 incidents during weekends by implementing automated monitoring, self-healing mechanisms, and on-call escalation improvements.' },
+            { title: 'Optimized Throughput (6000ms -> 72ms)', duration: 'Perf', description: 'Profiled and re-architected critical notification processing pipeline, reducing p95 latency from 6000ms to 72ms through batching, caching, and query optimization.' },
+            { title: 'Hardened Security with Managed Identity', duration: 'Sec', description: 'Migrated service authentication from shared secrets to Azure Managed Identity, eliminating credential rotation overhead and reducing attack surface.' },
+            { title: 'Expanded Multi-Channel Reach (Slack, WhatsApp)', duration: 'Feat', description: 'Designed and implemented extensible channel adapters for Slack and WhatsApp, enabling enterprise customers to reach users across new communication platforms.' },
+        ]
+    },
+    samsung: {
+        title: 'Samsung',
+        role: ['Software Development Engineer'],
+        year: '2023 - 2024',
+        color: '#1428a0',
+        tracks: [
+            { title: 'Engineered No-Code ML Ops Platform', duration: 'Dev', description: 'Built a full-stack no-code platform enabling data scientists to train, evaluate, and deploy ML models without writing code, using React, Python, and Kubernetes.' },
+            { title: 'Reduced Model Development Time by 87%', duration: 'Perf', description: 'Streamlined the ML pipeline with automated data preprocessing, hyperparameter tuning, and one-click deployment, cutting model development cycles from weeks to days.' },
+            { title: 'Partnered with PM to Drive Roadmap', duration: 'PM', description: 'Collaborated closely with product management to prioritize features based on user research and business impact, shaping the quarterly roadmap and sprint planning.' },
+            { title: 'Increased User Rating (3.6 -> 4.3)', duration: 'UX', description: 'Improved platform usability through iterative UI/UX enhancements, responsive design, and user feedback integration, resulting in a significant rating increase.' },
+            { title: 'Automated E2E Integration Test Suites', duration: 'Test', description: 'Designed and implemented comprehensive end-to-end test suites using Selenium and pytest, achieving 90%+ coverage and reducing regression bugs by 60%.' },
+        ]
+    },
+    amazon: {
+        title: 'Amazon',
+        role: ['Software Development Engineer'],
+        year: '2022 - 2023',
+        color: '#ff9900',
+        tracks: [
+            { title: 'Designed High-Availability Backend Services', duration: 'Arch', description: 'Architected and deployed distributed backend services on AWS with multi-AZ redundancy, achieving 99.99% uptime for seller-facing operations.' },
+            { title: 'Supported 9.7M Global Sellers', duration: 'Scale', description: 'Built and maintained services handling high-throughput traffic from millions of global sellers, optimizing for low-latency responses and data consistency.' },
+            { title: 'Automated Deployment Workflows', duration: 'DevOps', description: 'Created CI/CD pipelines using AWS CodePipeline and CDK, enabling zero-downtime deployments and reducing release cycle time by 40%.' },
+            { title: 'Developed Python-based Telemetry Suite', duration: 'Data', description: 'Built a custom telemetry and observability framework in Python for real-time monitoring, anomaly detection, and operational dashboards.' },
+        ]
+    },
+    tcs: {
+        title: 'Tata Consultancy Services',
+        role: ['Systems Engineer'],
+        year: '2021 - 2022',
+        color: '#5f6db0',
+        tracks: [
+            { title: 'Modernized Legacy Monoliths to REST', duration: 'Migra', description: 'Led the migration of legacy monolithic applications to RESTful microservices architecture, improving maintainability and enabling independent scaling of components.' },
+            { title: 'Reduced Response Time by 80%', duration: 'Perf', description: 'Optimized database queries, introduced connection pooling, and implemented caching layers to reduce API response times by 80% across critical endpoints.' },
+            { title: 'Developed Custom Logging Middleware', duration: 'Obs', description: 'Built centralized logging middleware for request tracing, error aggregation, and performance monitoring across distributed services.' },
+        ]
+    }
+};
