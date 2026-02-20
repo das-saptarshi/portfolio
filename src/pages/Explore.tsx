@@ -1,17 +1,17 @@
 import { Play } from 'lucide-react';
-import { makeStyles, Text } from '@fluentui/react-components';
+import { makeStyles, tokens, Text } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     container: {
-        padding: '32px 48px 2rem',
-        '@media (max-width: 768px)': { padding: '20px 16px 2rem' },
+        padding: `${tokens.spacingVerticalXXXL} 48px 2rem`,
+        '@media (max-width: 768px)': { padding: `${tokens.spacingVerticalXL} ${tokens.spacingHorizontalL} 2rem` },
     },
     header: { marginBottom: '28px' },
-    categoryTitle: { display: 'flex', alignItems: 'center', gap: '1rem' },
+    categoryTitle: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalL },
     grid: {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: '24px',
+        gap: tokens.spacingHorizontalXXL,
     },
     videoCard: {
         cursor: 'pointer',
@@ -22,8 +22,8 @@ const useStyles = makeStyles({
         width: '100%',
         aspectRatio: '16/9',
         backgroundColor: '#1a1a1a',
-        borderRadius: '8px',
-        marginBottom: '12px',
+        borderRadius: tokens.borderRadiusXLarge,
+        marginBottom: tokens.spacingVerticalM,
         position: 'relative',
         overflow: 'hidden',
     },
@@ -43,20 +43,20 @@ const useStyles = makeStyles({
             '& > div:first-child > div:last-child': { opacity: 1 },
         },
     },
-    details: { display: 'flex', gap: '12px' },
+    details: { display: 'flex', gap: tokens.spacingHorizontalM },
     avatar: {
         width: '36px',
         height: '36px',
-        borderRadius: '50%',
+        borderRadius: tokens.borderRadiusCircular,
         backgroundColor: 'rgba(255,255,255,0.08)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '1rem',
+        fontSize: tokens.fontSizeBase400,
         flexShrink: 0,
     },
-    textInfo: { display: 'flex', flexDirection: 'column', gap: '2px' },
-    meta: { color: '#aaa', fontSize: '12px' },
+    textInfo: { display: 'flex', flexDirection: 'column', gap: tokens.spacingVerticalXXS },
+    meta: { color: tokens.colorNeutralForeground3, fontSize: tokens.fontSizeBase200 },
 });
 
 import { exploreProjects } from '../data/portfolio';

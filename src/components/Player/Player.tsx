@@ -11,12 +11,12 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 16px',
+        padding: `0 ${tokens.spacingHorizontalL}`,
         position: 'fixed',
         bottom: 0,
         left: 0,
         zIndex: 100,
-        '@media (max-width: 768px)': { bottom: '64px', padding: '0 12px' },
+        '@media (max-width: 768px)': { bottom: '64px', padding: `0 ${tokens.spacingHorizontalM}` },
     },
     topProgressBar: {
         position: 'absolute',
@@ -30,25 +30,25 @@ const useStyles = makeStyles({
         ':hover': { height: '5px' },
     },
     progressFill: { height: '100%', backgroundColor: '#ff0000', transition: 'width 0.3s linear' },
-    leftControls: { display: 'flex', alignItems: 'center', gap: '16px', width: '280px', flexShrink: 0 },
-    transportControls: { display: 'flex', alignItems: 'center', gap: '12px', color: '#fff' },
+    leftControls: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalL, width: '280px', flexShrink: 0 },
+    transportControls: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalM, color: tokens.colorNeutralForeground1 },
     controlIcon: {
         cursor: 'pointer',
-        color: '#ccc',
+        color: tokens.colorNeutralForeground2,
         transition: 'color 0.15s ease, transform 0.15s ease',
-        ':hover': { color: '#fff', transform: 'scale(1.1)' },
+        ':hover': { color: tokens.colorNeutralForeground1, transform: 'scale(1.1)' },
     },
     playPauseBtn: {
         cursor: 'pointer',
-        color: '#fff',
+        color: tokens.colorNeutralForeground1,
         transition: 'transform 0.15s ease',
         display: 'flex',
         alignItems: 'center',
         ':hover': { transform: 'scale(1.08)' },
     },
     timeText: {
-        color: '#888',
-        fontSize: '12px',
+        color: tokens.colorNeutralForeground4,
+        fontSize: tokens.fontSizeBase200,
         minWidth: '70px',
         '@media (max-width: 768px)': { display: 'none' },
     },
@@ -63,23 +63,23 @@ const useStyles = makeStyles({
     albumArt: {
         width: '44px',
         height: '44px',
-        borderRadius: '4px',
+        borderRadius: tokens.borderRadiusMedium,
         overflow: 'hidden',
         backgroundColor: '#333',
         flexShrink: 0,
     },
     trackDetails: { display: 'flex', flexDirection: 'column', overflow: 'hidden' },
     titleText: {
-        color: '#fff',
-        fontSize: '14px',
-        lineHeight: '1.3',
+        color: tokens.colorNeutralForeground1,
+        fontSize: tokens.fontSizeBase300,
+        lineHeight: tokens.lineHeightBase300,
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
     },
     artistText: {
-        color: '#aaa',
-        fontSize: '12px',
+        color: tokens.colorNeutralForeground3,
+        fontSize: tokens.fontSizeBase200,
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -87,7 +87,7 @@ const useStyles = makeStyles({
     trackActions: {
         display: 'flex',
         alignItems: 'center',
-        gap: '4px',
+        gap: tokens.spacingHorizontalXS,
         flexShrink: 0,
         '@media (max-width: 768px)': { display: 'none' },
     },
@@ -95,24 +95,24 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        gap: '16px',
+        gap: tokens.spacingHorizontalL,
         width: '280px',
         flexShrink: 0,
-        color: '#ccc',
-        '@media (max-width: 768px)': { width: 'auto', gap: '8px' },
+        color: tokens.colorNeutralForeground2,
+        '@media (max-width: 768px)': { width: 'auto', gap: tokens.spacingHorizontalS },
     },
     rightIcon: {
         cursor: 'pointer',
-        color: '#888',
+        color: tokens.colorNeutralForeground4,
         transition: 'color 0.15s ease',
-        ':hover': { color: '#fff' },
+        ':hover': { color: tokens.colorNeutralForeground1 },
         '@media (max-width: 768px)': { display: 'none' },
     },
     expandToggle: {
         cursor: 'pointer',
-        color: '#888',
+        color: tokens.colorNeutralForeground4,
         transition: 'color 0.15s ease, transform 0.3s ease',
-        ':hover': { color: '#fff' },
+        ':hover': { color: tokens.colorNeutralForeground1 },
     },
     expandedOverlay: {
         position: 'fixed',
@@ -128,7 +128,7 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         padding: '40px',
         overflowY: 'auto',
-        '@media (max-width: 768px)': { left: 0, width: '100vw', padding: '24px' },
+        '@media (max-width: 768px)': { left: 0, width: '100vw', padding: tokens.spacingHorizontalXXL },
     },
     expandedOpen: { transform: 'translateY(0)' },
     expandedHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '40px' },
@@ -148,37 +148,37 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: '48px',
-        marginBottom: '20px',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+        marginBottom: tokens.spacingVerticalXL,
+        boxShadow: tokens.shadow28,
     },
     bio: {
         maxWidth: '600px',
-        color: '#999',
-        marginTop: '12px',
-        lineHeight: '1.6',
-        fontSize: '14px',
+        color: tokens.colorNeutralForeground3,
+        marginTop: tokens.spacingVerticalM,
+        lineHeight: tokens.lineHeightBase400,
+        fontSize: tokens.fontSizeBase300,
         textAlign: 'center',
     },
     columns: { display: 'flex', gap: '4rem', maxWidth: '1000px', margin: '0 auto', width: '100%', flexWrap: 'wrap' },
     column: { flex: 1, minWidth: '300px' },
     sectionTitle: {
-        fontSize: '16px',
-        fontWeight: 700,
-        marginBottom: '16px',
-        paddingBottom: '10px',
-        borderBottom: '1px solid rgba(255,255,255,0.08)',
-        color: '#fff',
+        fontSize: tokens.fontSizeBase400,
+        fontWeight: tokens.fontWeightBold,
+        marginBottom: tokens.spacingVerticalL,
+        paddingBottom: tokens.spacingVerticalMNudge,
+        borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
+        color: tokens.colorNeutralForeground1,
     },
-    timelineList: { display: 'flex', flexDirection: 'column', gap: '16px' },
+    timelineList: { display: 'flex', flexDirection: 'column', gap: tokens.spacingVerticalL },
     timelineItem: { display: 'flex', gap: '14px' },
-    timelineYear: { fontWeight: 600, color: '#666', minWidth: '60px', fontSize: '13px' },
-    skillCloud: { display: 'flex', flexWrap: 'wrap', gap: '8px' },
+    timelineYear: { fontWeight: tokens.fontWeightSemibold, color: tokens.colorNeutralForeground4, minWidth: '60px', fontSize: '13px' },
+    skillCloud: { display: 'flex', flexWrap: 'wrap', gap: tokens.spacingHorizontalS },
     skillBadge: {
         fontSize: '13px',
-        padding: '6px 14px',
+        padding: `${tokens.spacingVerticalSNudge} 14px`,
         backgroundColor: 'rgba(255,255,255,0.06)',
-        color: '#ccc',
-        border: '1px solid rgba(255,255,255,0.08)',
+        color: tokens.colorNeutralForeground2,
+        border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
         borderRadius: '20px',
     },
 });
@@ -195,7 +195,6 @@ const Player = () => {
 
     return (
         <>
-            {/* Expanded Overlay */}
             <div className={mergeClasses(styles.expandedOverlay, isExpanded && styles.expandedOpen)}>
                 <div className={styles.expandedHeader}>
                     <Button appearance="transparent" icon={<ChevronDown size={32} />} onClick={() => setIsExpanded(false)} />
@@ -206,7 +205,7 @@ const Player = () => {
                         <img src={`${import.meta.env.BASE_URL}website/images/headshot.jpg`} alt="SD" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
                     </div>
                     <Text size={900} weight="bold">Saptarshi Das</Text>
-                    <Text size={500} style={{ color: '#aaa', marginTop: '8px' }}>Software Engineer II • Microsoft</Text>
+                    <Text size={500} style={{ color: tokens.colorNeutralForeground3, marginTop: tokens.spacingVerticalS }}>Software Engineer II • Microsoft</Text>
                     <Text className={styles.bio}>{bio}</Text>
                 </div>
 
@@ -218,8 +217,8 @@ const Player = () => {
                                 <div key={exp.id} className={styles.timelineItem}>
                                     <div className={styles.timelineYear}>{exp.year.split(' ')[0]}</div>
                                     <div>
-                                        <Text weight="bold" block style={{ fontSize: '14px' }}>{exp.title}</Text>
-                                        <Text style={{ color: '#888', fontSize: '13px' }}>
+                                        <Text weight="bold" block style={{ fontSize: tokens.fontSizeBase300 }}>{exp.title}</Text>
+                                        <Text style={{ color: tokens.colorNeutralForeground4, fontSize: '13px' }}>
                                             {exp.role.join(', ')}
                                         </Text>
                                     </div>
@@ -239,21 +238,12 @@ const Player = () => {
                 </div>
             </div>
 
-            {/* Player Bar */}
-            <div
-                className={styles.player}
-                onClick={() => setIsExpanded(!isExpanded)}
-            >
-                {/* Top Progress Bar */}
+            <div className={styles.player} onClick={() => setIsExpanded(!isExpanded)}>
                 <div className={styles.topProgressBar}>
                     <div className={styles.progressFill} style={{ width: '40%' }} />
                 </div>
 
-                {/* Left: Controls & Time */}
-                <div
-                    className={styles.leftControls}
-                    onClick={(e) => e.stopPropagation()}
-                >
+                <div className={styles.leftControls} onClick={(e) => e.stopPropagation()}>
                     <div className={styles.transportControls}>
                         <SkipBack size={24} className={styles.controlIcon} fill="currentColor" />
                         <div onClick={togglePlay} className={styles.playPauseBtn}>
@@ -264,14 +254,9 @@ const Player = () => {
                     <span className={styles.timeText}>{currentPlayback.progress} / {currentPlayback.duration}</span>
                 </div>
 
-                {/* Center: Track Info */}
                 <div className={styles.centerTrackInfo}>
                     <div className={styles.albumArt}>
-                        <img
-                            src={currentPlayback.cover}
-                            alt="cover"
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
+                        <img src={currentPlayback.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <div className={styles.trackDetails}>
                         <Text weight="semibold" className={styles.titleText}>{currentPlayback.title}</Text>
@@ -283,19 +268,12 @@ const Player = () => {
                     </div>
                 </div>
 
-                {/* Right: Volume & Extras */}
-                <div
-                    className={styles.rightControls}
-                    onClick={(e) => e.stopPropagation()}
-                >
+                <div className={styles.rightControls} onClick={(e) => e.stopPropagation()}>
                     <Volume2 size={20} className={styles.rightIcon} />
                     <Repeat size={20} className={styles.rightIcon} />
                     <Shuffle size={20} className={styles.rightIcon} />
                     <div onClick={() => setIsExpanded(!isExpanded)} className={styles.expandToggle}>
-                        {isExpanded
-                            ? <ChevronDown size={24} />
-                            : <ChevronUp size={24} />
-                        }
+                        {isExpanded ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
                     </div>
                 </div>
             </div>

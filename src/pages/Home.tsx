@@ -1,53 +1,53 @@
 import { useState } from 'react';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
-import { makeStyles, Button, Text, mergeClasses } from '@fluentui/react-components';
+import { makeStyles, tokens, Button, Text, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     container: {
-        padding: '24px 48px 2rem',
-        '@media (max-width: 768px)': { padding: '16px 16px 2rem' },
+        padding: `${tokens.spacingVerticalXXL} 48px 2rem`,
+        '@media (max-width: 768px)': { padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalL} 2rem` },
     },
     headerBar: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: '1rem',
-        marginBottom: '24px',
+        gap: tokens.spacingHorizontalL,
+        marginBottom: tokens.spacingVerticalXXL,
     },
     searchContainer: {
         display: 'flex',
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.08)',
         borderRadius: '24px',
-        padding: '10px 20px',
+        padding: `${tokens.spacingVerticalMNudge} ${tokens.spacingHorizontalXL}`,
         flex: 1,
         maxWidth: '540px',
-        gap: '10px',
-        border: '1px solid rgba(255,255,255,0.06)',
+        gap: tokens.spacingHorizontalMNudge,
+        border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.06)`,
         transition: 'all 0.2s ease',
         ':hover': { backgroundColor: 'rgba(255,255,255,0.12)' },
         ':focus-within': {
             backgroundColor: 'rgba(255,255,255,0.14)',
-            border: '1px solid rgba(255,255,255,0.2)',
+            border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.2)`,
         },
     },
     searchInput: {
         backgroundColor: 'transparent',
         border: 'none',
-        color: '#fff',
+        color: tokens.colorNeutralForeground1,
         width: '100%',
-        fontSize: '14px',
+        fontSize: tokens.fontSizeBase300,
         fontFamily: 'inherit',
         ':focus': { outline: 'none' },
-        '::placeholder': { color: '#888' },
+        '::placeholder': { color: tokens.colorNeutralForeground4 },
     },
-    profileActions: { display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 },
+    profileActions: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalM, flexShrink: 0 },
     profileAvatar: {
         width: '32px',
         height: '32px',
-        borderRadius: '50%',
+        borderRadius: tokens.borderRadiusCircular,
         backgroundColor: 'rgba(255,255,255,0.1)',
-        border: '1px solid rgba(255,255,255,0.15)',
+        border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.15)`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -55,76 +55,76 @@ const useStyles = makeStyles({
         transition: 'all 0.2s ease',
         ':hover': {
             backgroundColor: 'rgba(255,255,255,0.2)',
-            border: '1px solid rgba(255,255,255,0.3)',
+            border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.3)`,
         },
     },
     chipRow: {
         display: 'flex',
-        gap: '10px',
+        gap: tokens.spacingHorizontalMNudge,
         overflowX: 'auto',
-        paddingBottom: '8px',
+        paddingBottom: tokens.spacingVerticalS,
         marginBottom: '28px',
         scrollbarWidth: 'none',
         '::-webkit-scrollbar': { display: 'none' },
     },
     chip: {
-        padding: '8px 16px',
-        borderRadius: '8px',
+        padding: `${tokens.spacingVerticalS} ${tokens.spacingHorizontalL}`,
+        borderRadius: tokens.borderRadiusXLarge,
         backgroundColor: 'rgba(255,255,255,0.08)',
-        color: '#ccc',
+        color: tokens.colorNeutralForeground2,
         fontSize: '13px',
-        fontWeight: 500,
+        fontWeight: tokens.fontWeightMedium,
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         border: 'none',
         transition: 'all 0.15s ease',
         flexShrink: 0,
         fontFamily: 'inherit',
-        ':hover': { backgroundColor: 'rgba(255,255,255,0.15)', color: '#fff' },
+        ':hover': { backgroundColor: 'rgba(255,255,255,0.15)', color: tokens.colorNeutralForeground1 },
     },
     chipActive: {
-        backgroundColor: '#fff',
-        color: '#000',
-        ':hover': { backgroundColor: '#e8e8e8', color: '#000' },
+        backgroundColor: tokens.colorNeutralForeground1,
+        color: tokens.colorNeutralBackground1,
+        ':hover': { backgroundColor: '#e8e8e8', color: tokens.colorNeutralBackground1 },
     },
-    profileSection: { display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '36px' },
-    profileImg: { width: '36px', height: '36px', borderRadius: '50%', overflow: 'hidden', flexShrink: 0 },
+    profileSection: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalL, marginBottom: '36px' },
+    profileImg: { width: '36px', height: '36px', borderRadius: tokens.borderRadiusCircular, overflow: 'hidden', flexShrink: 0 },
     section: { marginBottom: '40px' },
     sectionHeader: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: '16px',
+        marginBottom: tokens.spacingVerticalL,
     },
-    sectionLeft: { display: 'flex', flexDirection: 'column', gap: '2px' },
-    sectionRight: { display: 'flex', alignItems: 'center', gap: '8px' },
+    sectionLeft: { display: 'flex', flexDirection: 'column', gap: tokens.spacingVerticalXXS },
+    sectionRight: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalS },
     carouselArrow: {
         width: '36px',
         height: '36px',
-        borderRadius: '50%',
+        borderRadius: tokens.borderRadiusCircular,
         border: 'none',
         backgroundColor: 'rgba(255,255,255,0.08)',
-        color: '#ccc',
+        color: tokens.colorNeutralForeground2,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
         transition: 'all 0.15s ease',
-        ':hover': { backgroundColor: 'rgba(255,255,255,0.18)', color: '#fff' },
+        ':hover': { backgroundColor: 'rgba(255,255,255,0.18)', color: tokens.colorNeutralForeground1 },
     },
     moreButton: {
-        color: '#aaa',
-        border: '1px solid rgba(255,255,255,0.15)',
+        color: tokens.colorNeutralForeground3,
+        border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.15)`,
         minWidth: 'auto',
         borderRadius: '20px',
-        padding: '4px 16px',
-        fontSize: '12px',
-        fontWeight: 500,
+        padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalL}`,
+        fontSize: tokens.fontSizeBase200,
+        fontWeight: tokens.fontWeightMedium,
         transition: 'all 0.15s ease',
-        ':hover': { border: '1px solid rgba(255,255,255,0.4)', color: '#fff' },
+        ':hover': { border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.4)`, color: tokens.colorNeutralForeground1 },
     },
     subtitle: {
-        color: '#888',
+        color: tokens.colorNeutralForeground4,
         textTransform: 'uppercase',
         display: 'block',
         fontSize: '11px',
@@ -132,9 +132,9 @@ const useStyles = makeStyles({
     },
     scrollContainer: {
         display: 'flex',
-        gap: '20px',
+        gap: tokens.spacingHorizontalXL,
         overflowX: 'auto',
-        paddingBottom: '8px',
+        paddingBottom: tokens.spacingVerticalS,
         scrollbarWidth: 'none',
         '::-webkit-scrollbar': { display: 'none' },
     },
@@ -142,8 +142,8 @@ const useStyles = makeStyles({
     cardArt: {
         width: '200px',
         height: '200px',
-        borderRadius: '4px',
-        marginBottom: '10px',
+        borderRadius: tokens.borderRadiusMedium,
+        marginBottom: tokens.spacingVerticalMNudge,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -152,7 +152,7 @@ const useStyles = makeStyles({
     },
     cardTitle: {
         fontSize: '1.3rem',
-        fontWeight: 700,
+        fontWeight: tokens.fontWeightBold,
         color: 'rgba(255,255,255,0.7)',
         textShadow: '0 2px 8px rgba(0,0,0,0.3)',
     },
@@ -168,8 +168,8 @@ const useStyles = makeStyles({
             '& > div:last-child': { opacity: 1 },
         },
     },
-    cardLabel: { marginTop: '4px' },
-    cardDesc: { color: '#aaa', fontSize: '12px' },
+    cardLabel: { marginTop: tokens.spacingVerticalXS },
+    cardDesc: { color: tokens.colorNeutralForeground3, fontSize: tokens.fontSizeBase200 },
 });
 
 import { homeCategories } from '../data/portfolio';
@@ -183,7 +183,6 @@ const Home = () => {
 
     return (
         <div className={styles.container}>
-            {/* Header / Search */}
             <div className={styles.headerBar}>
                 <div className={styles.searchContainer}>
                     <Search size={18} color="#888" />
@@ -196,7 +195,6 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* Category Chips */}
             <div className={styles.chipRow}>
                 {chipLabels.map((label, i) => (
                     <button
@@ -209,7 +207,6 @@ const Home = () => {
                 ))}
             </div>
 
-            {/* Profile Section */}
             <div className={styles.profileSection}>
                 <div className={styles.profileImg}>
                     <img
@@ -219,12 +216,11 @@ const Home = () => {
                     />
                 </div>
                 <div>
-                    <Text size={200} style={{ color: '#888', display: 'block', textTransform: 'uppercase', fontSize: '11px', letterSpacing: '1px' }}>Saptarshi Das</Text>
+                    <Text size={200} style={{ color: tokens.colorNeutralForeground4, display: 'block', textTransform: 'uppercase', fontSize: '11px', letterSpacing: '1px' }}>Saptarshi Das</Text>
                     <Text size={600} weight="bold">Software Engineer</Text>
                 </div>
             </div>
 
-            {/* Skill Category Sections */}
             {skillCategories.map((category, idx) => (
                 <div key={idx} className={styles.section}>
                     <div className={styles.sectionHeader}>
@@ -233,12 +229,8 @@ const Home = () => {
                             <Text size={600} weight="bold">{category.title}</Text>
                         </div>
                         <div className={styles.sectionRight}>
-                            <button className={styles.carouselArrow}>
-                                <ChevronLeft size={18} />
-                            </button>
-                            <button className={styles.carouselArrow}>
-                                <ChevronRight size={18} />
-                            </button>
+                            <button className={styles.carouselArrow}><ChevronLeft size={18} /></button>
+                            <button className={styles.carouselArrow}><ChevronRight size={18} /></button>
                             <Button appearance="outline" shape="circular" size="small" className={styles.moreButton}>More</Button>
                         </div>
                     </div>

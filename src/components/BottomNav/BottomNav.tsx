@@ -1,6 +1,6 @@
 import { Home, Library, Compass } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import { makeStyles, mergeClasses } from '@fluentui/react-components';
+import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     bottomNav: {
@@ -11,14 +11,12 @@ const useStyles = makeStyles({
         width: '100%',
         height: '64px',
         backgroundColor: '#181818',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
         zIndex: 200,
         justifyContent: 'space-around',
         alignItems: 'center',
         paddingBottom: 'env(safe-area-inset-bottom)',
-        '@media (max-width: 768px)': {
-            display: 'flex',
-        },
+        '@media (max-width: 768px)': { display: 'flex' },
     },
     navItem: {
         display: 'flex',
@@ -26,20 +24,16 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         textDecoration: 'none',
-        color: '#777',
-        gap: '4px',
-        fontSize: '10px',
-        fontWeight: 500,
+        color: tokens.colorNeutralForeground4,
+        gap: tokens.spacingVerticalXS,
+        fontSize: tokens.fontSizeBase100,
+        fontWeight: tokens.fontWeightMedium,
         width: '100%',
         height: '100%',
         transition: 'color 0.15s ease',
-        ':hover': {
-            color: '#ccc',
-        }
+        ':hover': { color: tokens.colorNeutralForeground2 },
     },
-    activeItem: {
-        color: '#ffffff',
-    }
+    activeItem: { color: tokens.colorNeutralForeground1 },
 });
 
 const BottomNav = () => {
