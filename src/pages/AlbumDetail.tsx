@@ -209,12 +209,12 @@ const AlbumDetail = () => {
     if (!data) return <div style={{ padding: '48px', color: '#888' }}>Album not found</div>;
 
     return (
-        <div className={styles.container}>
+        <div
+            className={styles.container}
+            style={{ background: `linear-gradient(to bottom, ${data.color}55 0%, ${data.color}20 40%, transparent 100%)` }}
+        >
             {/* Header */}
-            <div
-                className={styles.header}
-                style={{ background: `linear-gradient(to bottom, ${data.color}40, transparent)` }}
-            >
+            <div className={styles.header}>
                 <div
                     className={styles.albumArt}
                     style={{ background: `linear-gradient(135deg, ${data.color}, #000)` }}
