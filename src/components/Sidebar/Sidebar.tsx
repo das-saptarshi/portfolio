@@ -1,4 +1,4 @@
-import { Home, Library, Compass, Menu } from 'lucide-react';
+import { Home, Library, Compass, Menu, ListMusic } from 'lucide-react';
 import { playlists } from '../../data/portfolio';
 import { NavLink } from 'react-router-dom';
 import { makeStyles, tokens, Button, Text, mergeClasses } from '@fluentui/react-components';
@@ -88,6 +88,7 @@ const Sidebar = () => {
         { icon: Home, label: 'Home', path: '/' },
         { icon: Compass, label: 'Explore', path: '/explore' },
         { icon: Library, label: 'Library', path: '/library' },
+        { icon: ListMusic, label: 'Queue', path: '/queue' },
     ];
 
     return (

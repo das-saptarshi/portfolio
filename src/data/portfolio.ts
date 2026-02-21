@@ -183,6 +183,15 @@ export const playlists = [
     { name: 'Github', link: 'https://github.com/das-saptarshi/' }
 ];
 
+// Queue / Contact Data
+export const contactMethods = [
+    { name: 'Email', type: 'email', link: 'mailto:das.saptarshi@outlook.com', display: 'das.saptarshi@outlook.com' },
+    { name: 'LinkedIn', type: 'social', link: 'https://www.linkedin.com/in/das-saptarshi/', display: 'linkedin.com/in/das-saptarshi' },
+    { name: 'GitHub', type: 'code', link: 'https://github.com/das-saptarshi/', display: 'github.com/das-saptarshi' },
+    { name: 'LeetCode', type: 'code', link: 'https://leetcode.com/das-saptarshi/', display: 'leetcode.com/das-saptarshi' },
+    { name: 'GeeksForGeeks', type: 'code', link: 'https://auth.geeksforgeeks.org/user/das_saptarshi/', display: 'geeksforgeeks.org/das_saptarshi' },
+];
+
 // Album Detail Page Data
 export interface Track {
     title: string;

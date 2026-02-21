@@ -5,6 +5,7 @@ import Library from './pages/Library';
 import AlbumDetail from './pages/AlbumDetail';
 import Explore from './pages/Explore';
 import ProjectDetail from './pages/ProjectDetail';
+import Queue from './pages/Queue';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="explore" element={<Explore />} />
           <Route path="album/:id" element={<AlbumDetail />} />
           <Route path="project/:id" element={<ProjectDetail />} />
+          <Route path="queue" element={<Queue />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
