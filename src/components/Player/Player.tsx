@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle, ThumbsUp, Download } from 'lucide-react';
-import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
+import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle, ThumbsUp, Download, Mail, Linkedin, Github, Code2, ExternalLink } from 'lucide-react';
+import { bio, experience, skills, currentPlayback, contactMethods } from '../../data/portfolio';
 import { makeStyles, tokens, Button, Text, Tooltip, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
@@ -181,6 +181,59 @@ const useStyles = makeStyles({
         border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
         borderRadius: '20px',
     },
+    queueSection: {
+        maxWidth: '1000px',
+        margin: '0 auto',
+        width: '100%',
+        marginTop: '48px',
+    },
+    queueRow: {
+        display: 'grid',
+        gridTemplateColumns: '36px 1fr 1fr 32px',
+        paddingTop: '12px',
+        paddingRight: tokens.spacingHorizontalL,
+        paddingBottom: '12px',
+        paddingLeft: tokens.spacingHorizontalL,
+        color: tokens.colorNeutralForeground2,
+        cursor: 'pointer',
+        alignItems: 'center',
+        borderBottom: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.06)`,
+        borderRadius: tokens.borderRadiusMedium,
+        transition: 'background-color 0.15s ease, color 0.15s ease',
+        ':hover': {
+            backgroundColor: 'rgba(255,255,255,0.06)',
+            color: tokens.colorNeutralForeground1,
+        },
+    },
+    queueIndex: { color: tokens.colorNeutralForeground4, fontSize: tokens.fontSizeBase200 },
+    queueName: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    queueIcon: {
+        width: '28px',
+        height: '28px',
+        borderRadius: tokens.borderRadiusMedium,
+        backgroundColor: 'rgba(255,255,255,0.06)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+    },
+    queueLink: {
+        color: tokens.colorNeutralForeground4,
+        fontSize: '13px',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+    },
+    queueExternal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: tokens.colorNeutralForeground4,
+    },
 });
 
 const Player = () => {
@@ -235,6 +288,34 @@ const Player = () => {
                             ))}
                         </div>
                     </div>
+                </div>
+
+                {/* Queue / Contact */}
+                <div className={styles.queueSection}>
+                    <h3 className={styles.sectionTitle}>Next in Queue</h3>
+                    {contactMethods.map((contact, idx) => {
+                        const iconMap: Record<string, React.ElementType> = { Email: Mail, LinkedIn: Linkedin, GitHub: Github, LeetCode: Code2, GeeksForGeeks: Code2 };
+                        const Icon = iconMap[contact.name] || Code2;
+                        return (
+                            <div
+                                key={contact.name}
+                                className={styles.queueRow}
+                                onClick={(e) => { e.stopPropagation(); window.open(contact.link, '_blank'); }}
+                            >
+                                <span className={styles.queueIndex}>{idx + 1}</span>
+                                <div className={styles.queueName}>
+                                    <div className={styles.queueIcon}>
+                                        <Icon size={14} color="#aaa" />
+                                    </div>
+                                    <Text weight="medium" style={{ fontSize: tokens.fontSizeBase300 }}>{contact.name}</Text>
+                                </div>
+                                <span className={styles.queueLink}>{contact.display}</span>
+                                <div className={styles.queueExternal}>
+                                    <ExternalLink size={13} />
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
