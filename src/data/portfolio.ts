@@ -103,40 +103,65 @@ export const libraryAlbums = [
 // Explore Page Data
 export const exploreProjects = [
     {
+        id: 'distributed-rate-limiter',
         title: 'Distributed Rate Limiter',
         type: 'System Design',
         views: '1.2M',
         color: '#ff5252',
-        desc: 'High-performance rate limiting architecture'
+        desc: 'High-performance rate limiting architecture',
+        description: 'A distributed rate limiting system built with Redis and Lua scripting, supporting sliding window and token bucket algorithms. Designed for high-throughput API gateways with sub-millisecond overhead and consistent behavior across multiple nodes.',
+        techStack: ['Redis', 'Lua', 'Go', 'Docker', 'Prometheus', 'Grafana'],
+        githubUrl: 'https://github.com/das-saptarshi',
+        demoUrl: '',
     },
     {
+        id: 'realtime-chat-engine',
         title: 'Real-time Chat Engine',
         type: 'WebSocket',
         views: '840K',
         color: '#3776ab',
-        desc: 'Scalable WebSocket implementation'
+        desc: 'Scalable WebSocket implementation',
+        description: 'A scalable real-time chat engine leveraging WebSocket connections with automatic reconnection, presence detection, and message delivery guarantees. Supports group channels, typing indicators, and read receipts at scale.',
+        techStack: ['Node.js', 'WebSocket', 'Redis Pub/Sub', 'TypeScript', 'React', 'MongoDB'],
+        githubUrl: 'https://github.com/das-saptarshi',
+        demoUrl: '',
     },
     {
+        id: 'graphql-federation',
         title: 'GraphQL Federation',
         type: 'API Gateway',
         views: '2.1M',
         color: '#e535ab',
-        desc: 'Unified graph schema for microservices'
+        desc: 'Unified graph schema for microservices',
+        description: 'An Apollo Federation-based gateway that composes multiple subgraph schemas into a unified supergraph. Enables teams to independently develop and deploy their domain services while presenting a single cohesive API to clients.',
+        techStack: ['GraphQL', 'Apollo Federation', 'Node.js', 'TypeScript', 'Kubernetes', 'DataLoader'],
+        githubUrl: 'https://github.com/das-saptarshi',
+        demoUrl: '',
     },
     {
+        id: 'kubernetes-operator',
         title: 'Kubernetes Operator',
         type: 'DevOps',
         views: '450K',
         color: '#326ce5',
-        desc: 'Automating stateful deployments'
+        desc: 'Automating stateful deployments',
+        description: 'A custom Kubernetes operator built with the Operator SDK that automates the lifecycle management of stateful applications — handling provisioning, scaling, backup, and recovery with custom resource definitions (CRDs).',
+        techStack: ['Go', 'Kubernetes', 'Operator SDK', 'Helm', 'Prometheus', 'Docker'],
+        githubUrl: 'https://github.com/das-saptarshi',
+        demoUrl: '',
     },
     {
+        id: 'event-sourcing-demo',
         title: 'Event Sourcing Demo',
         type: 'Architecture',
         views: '900K',
         color: '#6db33f',
-        desc: 'CQRS and Event Sourcing patterns'
-    }
+        desc: 'CQRS and Event Sourcing patterns',
+        description: 'A reference implementation of CQRS and Event Sourcing patterns demonstrating how to build audit-friendly, eventually consistent systems. Includes event store, projections, snapshots, and saga orchestration for complex workflows.',
+        techStack: ['Java', 'Spring Boot', 'Kafka', 'PostgreSQL', 'Event Store', 'Docker'],
+        githubUrl: 'https://github.com/das-saptarshi',
+        demoUrl: '',
+    },
 ];
 
 // Player Data

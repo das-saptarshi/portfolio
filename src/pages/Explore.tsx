@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Play } from 'lucide-react';
 import { makeStyles, tokens, Text } from '@fluentui/react-components';
 
@@ -65,6 +66,7 @@ const projects = exploreProjects;
 
 const Explore = () => {
     const styles = useStyles();
+    const navigate = useNavigate();
 
     return (
         <div className={styles.container}>
@@ -75,8 +77,8 @@ const Explore = () => {
             </div>
 
             <div className={styles.grid}>
-                {projects.map((project, idx) => (
-                    <div key={idx} className={`${styles.videoCard} ${styles.videoCardHover}`}>
+                {projects.map((project) => (
+                    <div key={project.id} className={`${styles.videoCard} ${styles.videoCardHover}`} onClick={() => navigate(`/project/${project.id}`)}>
                         <div className={styles.thumbnail}>
                             <div
                                 className={styles.thumbnailBg}
