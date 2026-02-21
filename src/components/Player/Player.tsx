@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle, ThumbsUp } from 'lucide-react';
+import { SkipBack, SkipForward, Repeat, Shuffle, Volume2, ChevronUp, ChevronDown, MoreHorizontal, PlayCircle, PauseCircle, ThumbsUp, Download } from 'lucide-react';
 import { bio, experience, skills, currentPlayback } from '../../data/portfolio';
-import { makeStyles, tokens, Button, Text, mergeClasses } from '@fluentui/react-components';
+import { makeStyles, tokens, Button, Text, Tooltip, mergeClasses } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     player: {
@@ -269,6 +269,16 @@ const Player = () => {
                 </div>
 
                 <div className={styles.rightControls} onClick={(e) => e.stopPropagation()}>
+                    <Tooltip content="Download Resume" relationship="label">
+                        <a
+                            href={`${import.meta.env.BASE_URL}website/Saptarshi_Das_Resume.pdf`}
+                            download="Saptarshi_Das_Resume.pdf"
+                            style={{ display: 'flex', alignItems: 'center' }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Download size={20} className={styles.rightIcon} />
+                        </a>
+                    </Tooltip>
                     <Volume2 size={20} className={styles.rightIcon} />
                     <Repeat size={20} className={styles.rightIcon} />
                     <Shuffle size={20} className={styles.rightIcon} />
