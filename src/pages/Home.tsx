@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Search, ChevronLeft, ChevronRight, Disc3, Video, Cpu } from 'lucide-react';
+import { Command } from 'cmdk';
 import { makeStyles, tokens, Button, Text, mergeClasses } from '@fluentui/react-components';
+import { homeCategories, libraryAlbums, exploreProjects } from '../data/portfolio';
 
 const useStyles = makeStyles({
     container: {
@@ -14,32 +17,10 @@ const useStyles = makeStyles({
         gap: tokens.spacingHorizontalL,
         marginBottom: tokens.spacingVerticalXXL,
     },
-    searchContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        backgroundColor: 'rgba(255,255,255,0.08)',
-        borderRadius: '24px',
-        padding: `${tokens.spacingVerticalMNudge} ${tokens.spacingHorizontalXL}`,
+    searchWrapper: {
+        position: 'relative',
         flex: 1,
         maxWidth: '540px',
-        gap: tokens.spacingHorizontalMNudge,
-        border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.06)`,
-        transition: 'all 0.2s ease',
-        ':hover': { backgroundColor: 'rgba(255,255,255,0.12)' },
-        ':focus-within': {
-            backgroundColor: 'rgba(255,255,255,0.14)',
-            border: `${tokens.strokeWidthThin} solid rgba(255,255,255,0.2)`,
-        },
-    },
-    searchInput: {
-        backgroundColor: 'transparent',
-        border: 'none',
-        color: tokens.colorNeutralForeground1,
-        width: '100%',
-        fontSize: tokens.fontSizeBase300,
-        fontFamily: 'inherit',
-        ':focus': { outline: 'none' },
-        '::placeholder': { color: tokens.colorNeutralForeground4 },
     },
     profileActions: { display: 'flex', alignItems: 'center', gap: tokens.spacingHorizontalM, flexShrink: 0 },
     profileAvatar: {
@@ -172,22 +153,210 @@ const useStyles = makeStyles({
     cardDesc: { color: tokens.colorNeutralForeground3, fontSize: tokens.fontSizeBase200 },
 });
 
-import { homeCategories } from '../data/portfolio';
+// Flatten skills for search
+const allSkills = homeCategories.flatMap(c => c.items);
 
 const chipLabels = ['All', 'Backend', 'Cloud', 'DevOps', 'Frontend', 'System Design'];
 
 const Home = () => {
     const styles = useStyles();
+    const navigate = useNavigate();
     const [activeChip, setActiveChip] = useState(0);
+    const [search, setSearch] = useState('');
+    const [open, setOpen] = useState(false);
+    const wrapperRef = useRef<HTMLDivElement>(null);
     const skillCategories = homeCategories;
+
+    // Close dropdown on outside click
+    useEffect(() => {
+        const handleClick = (e: MouseEvent) => {
+            if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+                setOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClick);
+        return () => document.removeEventListener('mousedown', handleClick);
+    }, []);
 
     return (
         <div className={styles.container}>
             <div className={styles.headerBar}>
-                <div className={styles.searchContainer}>
-                    <Search size={18} color="#888" />
-                    <input type="text" placeholder="Search songs, albums, artists, podcasts" className={styles.searchInput} />
+                <div className={styles.searchWrapper} ref={wrapperRef}>
+                    <Command
+                        label="Search portfolio"
+                        shouldFilter={true}
+                        loop
+                        filter={(value, search) => {
+                            if (value.toLowerCase().includes(search.toLowerCase())) return 1;
+                            return 0;
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                backgroundColor: 'rgba(255,255,255,0.08)',
+                                borderRadius: '24px',
+                                padding: '7px 20px',
+                                gap: '10px',
+                                border: '1px solid rgba(255,255,255,0.06)',
+                                transition: 'all 0.2s ease',
+                            }}
+                        >
+                            <Search size={18} color="#888" />
+                            <Command.Input
+                                value={search}
+                                onValueChange={(v) => { setSearch(v); setOpen(v.length > 0); }}
+                                onFocus={() => { if (search) setOpen(true); }}
+                                placeholder="Search companies, projects, skills..."
+                                style={{
+                                    backgroundColor: 'transparent',
+                                    border: 'none',
+                                    color: '#fff',
+                                    width: '100%',
+                                    fontSize: '14px',
+                                    fontFamily: 'inherit',
+                                    outline: 'none',
+                                }}
+                            />
+                        </div>
+
+                        <Command.List
+                            style={{
+                                position: 'absolute',
+                                top: 'calc(100% + 8px)',
+                                left: 0,
+                                right: 0,
+                                backgroundColor: '#1e1e1e',
+                                border: '1px solid rgba(255,255,255,0.12)',
+                                borderRadius: '12px',
+                                boxShadow: '0 16px 48px rgba(0,0,0,0.5)',
+                                zIndex: 1000,
+                                maxHeight: open ? '420px' : '0px',
+                                overflow: open ? 'auto' : 'hidden',
+                                opacity: open ? 1 : 0,
+                                transform: open ? 'translateY(0)' : 'translateY(-4px)',
+                                transition: 'opacity 0.2s ease, transform 0.2s ease, max-height 0.2s ease',
+                                scrollbarWidth: 'none',
+                                padding: open ? '6px 0' : '0',
+                            }}
+                        >
+                            <Command.Empty
+                                style={{
+                                    padding: '24px',
+                                    textAlign: 'center',
+                                    color: '#666',
+                                    fontSize: '14px',
+                                }}
+                            >
+                                No results for &ldquo;{search}&rdquo;
+                            </Command.Empty>
+
+                            <Command.Group
+                                heading="Albums"
+                                style={{}}
+                            >
+                                {libraryAlbums.map(album => (
+                                    <Command.Item
+                                        key={album.id}
+                                        value={`${album.title} ${album.role.join(' ')}`}
+                                        keywords={[album.title, ...album.role]}
+                                        onSelect={() => { navigate(`/album/${album.id}`); setOpen(false); setSearch(''); }}
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '12px',
+                                            padding: '8px 16px',
+                                            cursor: 'pointer',
+                                            borderRadius: '6px',
+                                            margin: '0 6px',
+                                            transition: 'background-color 0.12s ease',
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: '36px', height: '36px', borderRadius: '6px',
+                                            backgroundColor: album.coverColor,
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                                        }}>
+                                            <Disc3 size={18} color="rgba(255,255,255,0.7)" />
+                                        </div>
+                                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                                            <span style={{ fontSize: '14px', fontWeight: 500, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{album.title}</span>
+                                            <span style={{ fontSize: '12px', color: '#666' }}>{album.role.join(', ')} • {album.year}</span>
+                                        </div>
+                                    </Command.Item>
+                                ))}
+                            </Command.Group>
+
+                            <Command.Group heading="Videos">
+                                {exploreProjects.map(project => (
+                                    <Command.Item
+                                        key={project.id}
+                                        value={`${project.title} ${project.type} ${project.desc}`}
+                                        keywords={[project.title, project.type, project.desc]}
+                                        onSelect={() => { navigate(`/project/${project.id}`); setOpen(false); setSearch(''); }}
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '12px',
+                                            padding: '8px 16px',
+                                            cursor: 'pointer',
+                                            borderRadius: '6px',
+                                            margin: '0 6px',
+                                            transition: 'background-color 0.12s ease',
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: '36px', height: '36px', borderRadius: '6px',
+                                            backgroundColor: project.color,
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                                        }}>
+                                            <Video size={18} color="rgba(255,255,255,0.7)" />
+                                        </div>
+                                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                                            <span style={{ fontSize: '14px', fontWeight: 500, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{project.title}</span>
+                                            <span style={{ fontSize: '12px', color: '#666' }}>{project.type} • {project.views} views</span>
+                                        </div>
+                                    </Command.Item>
+                                ))}
+                            </Command.Group>
+
+                            <Command.Group heading="Skills">
+                                {allSkills.map(skill => (
+                                    <Command.Item
+                                        key={skill.name}
+                                        value={`${skill.name} ${skill.desc}`}
+                                        keywords={[skill.name, skill.desc]}
+                                        onSelect={() => { setOpen(false); setSearch(''); }}
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '12px',
+                                            padding: '8px 16px',
+                                            cursor: 'pointer',
+                                            borderRadius: '6px',
+                                            margin: '0 6px',
+                                            transition: 'background-color 0.12s ease',
+                                        }}
+                                    >
+                                        <div style={{
+                                            width: '36px', height: '36px', borderRadius: '6px',
+                                            backgroundColor: skill.color,
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                                        }}>
+                                            <Cpu size={18} color="rgba(255,255,255,0.7)" />
+                                        </div>
+                                        <div style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                                            <span style={{ fontSize: '14px', fontWeight: 500, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{skill.name}</span>
+                                            <span style={{ fontSize: '12px', color: '#666' }}>{skill.desc}</span>
+                                        </div>
+                                    </Command.Item>
+                                ))}
+                            </Command.Group>
+                        </Command.List>
+                    </Command>
                 </div>
+
                 <div className={styles.profileActions}>
                     <div className={styles.profileAvatar}>
                         <img src={`${import.meta.env.BASE_URL}website/images/headshot.jpg`} alt="SD" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
